@@ -11,7 +11,7 @@ public class Main {
 
         GamePanel gamePanel = new GamePanel();
         window.add(gamePanel);
-
+        System.out.println("funcionando na outra branch");
         window.pack();
 
         window.setLocationRelativeTo(null); // janela vai ser exibida no centro da tela
