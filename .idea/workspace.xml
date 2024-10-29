@@ -5,45 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c1b85905-869f-466e-8713-3c03d1950a61" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/res/Background/tiles/earth.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Background/tiles/floor01.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Background/tiles/grass00.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Background/tiles/grass01.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Background/tiles/hut.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Background/tiles/road00.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Background/tiles/road01.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Background/tiles/road02.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Background/tiles/road03.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Background/tiles/road04.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Background/tiles/road05.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Background/tiles/road06.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Background/tiles/road07.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Background/tiles/road08.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Background/tiles/road09.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Background/tiles/road10.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Background/tiles/road11.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Background/tiles/road12.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Background/tiles/table01.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Background/tiles/tree.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Background/tiles/wall.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Background/tiles/water00.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Background/tiles/water01.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Background/tiles/water02.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Background/tiles/water03.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Background/tiles/water04.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Background/tiles/water05.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Background/tiles/water06.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Background/tiles/water07.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Background/tiles/water08.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Background/tiles/water09.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Background/tiles/water10.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Background/tiles/water11.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Background/tiles/water12.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Background/tiles/water13.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tile/Tile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tile/TileManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/maps/map01.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GamePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tile/TileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tile/TileManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,5 +77,10 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/game$Main.ic" NAME="Main Coverage Results" MODIFIED="1730219496519" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>main.*</FILTER>
+    </SUITE>
   </component>
 </project>
