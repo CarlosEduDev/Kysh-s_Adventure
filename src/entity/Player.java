@@ -38,7 +38,8 @@ public class Player extends Entity {
         worldY = gp.tileSize * 21;
         speed = 4;
         direction = "down";
-    }
+    } //java -jar caminho\para\seuArquivo.jar
+
 
     // Carregar imagens do jogador
     public void getPlayerImage() {
