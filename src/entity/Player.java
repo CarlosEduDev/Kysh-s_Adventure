@@ -2,6 +2,7 @@ package entity;
 
 import main.GamePanel;
 import main.KeyHandler;
+import main.Sound;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -14,6 +15,7 @@ public class Player extends Entity {
 
     public final int screenX;
     public final int screenY;
+    int hasKey = 0;
 
     public Player(GamePanel gp, KeyHandler keyH) {
         this.gp = gp;
@@ -25,6 +27,10 @@ public class Player extends Entity {
         solidArea = new Rectangle();
         solidArea.x = 8;
         solidArea.y = 16;
+
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
+
         solidArea.width = 32;
         solidArea.height = 32;
 
@@ -83,6 +89,9 @@ public class Player extends Entity {
             collitionOn = false;
             gp.collitionCh.checkTile(this);
 
+            // checar a colisão dos objetos
+            int objIndex = gp.collitionCh.checkObject(this, true);
+            pickUpObject(objIndex);
             // se a colisão for false, o jogador pode andar
             if(collitionOn == false){
                 switch(direction){
@@ -113,6 +122,43 @@ public class Player extends Entity {
             }
         }
 
+    }
+
+    public void pickUpObject(int i){ // pegar um objeto
+        if(i != 999){
+            String objectName = gp.obj[i].name;
+
+            switch (objectName){
+                case "Key":
+                    gp.playSoundEff(2);
+                    gp.obj[i] = null;
+                    hasKey++;
+                    System.out.println("Você obteve " + hasKey + " chave(s)\nProcure um baú para abri-lo!");
+                    break;
+                case "Chest":
+                    if(hasKey > 0){
+                        gp.obj[i] = null;
+                        hasKey--;
+                        System.out.println("Você abriu o baú!\nvocê obteve o seguinte item: espada");
+                        System.out.println("Você tem " + hasKey + " chave(s)");
+                    }
+                    break;
+                case "Door", "Door_iron":
+                    if(hasKey > 0){
+                        gp.playSoundEff(4);
+                        gp.obj[i] = null;
+                        hasKey--;
+                        System.out.println("Você tem " + hasKey + " chave(s)");
+                    }
+                    break;
+
+                case "Boots":
+                    gp.obj[i] = null;
+                    gp.playSoundEff(3);
+                    speed +=1.4;
+                    System.out.println("Você pegou a bota!");
+            }
+        }
     }
 
     // Desenhar o jogador na tela

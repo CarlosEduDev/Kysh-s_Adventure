@@ -16,5 +16,6 @@ public class Entity {
 
     public Rectangle solidArea; // o Rectangle cria um retângulo invisivel/abstrato
 
+    public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collitionOn = false;
 }
