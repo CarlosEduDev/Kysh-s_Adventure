@@ -15,8 +15,8 @@ public class Player extends Entity {
 
     public final int screenX;
     public final int screenY;
-    int hasKey = 0;
-
+    public int hasKey = 0;
+    int standCounter = 0;
     public Player(GamePanel gp, KeyHandler keyH) {
         this.gp = gp;
         this.keyH = keyH;
@@ -31,8 +31,8 @@ public class Player extends Entity {
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
 
-        solidArea.width = 32;
-        solidArea.height = 32;
+        solidArea.width = 30;
+        solidArea.height = 28;
 
         setDefaultValues();
         getPlayerImage();
@@ -70,19 +70,15 @@ public class Player extends Entity {
 
             if (keyH.upPressed) {
                 direction = "up";
-
             }
             else if (keyH.downPressed) {
                 direction = "down";
-
             }
             else if (keyH.leftPressed) {
                 direction = "left";
-
             }
             else if (keyH.rightPressed) {
                 direction = "right";
-
             }
 
             //checa a colisão dos tile
@@ -121,6 +117,14 @@ public class Player extends Entity {
                 spriteCounter = 0;
             }
         }
+        else{
+            standCounter++;
+            if(standCounter == 20){
+                spriteNum = 1;
+                standCounter = 0;
+
+            }
+        }
 
     }
 
@@ -133,22 +137,25 @@ public class Player extends Entity {
                     gp.playSoundEff(2);
                     gp.obj[i] = null;
                     hasKey++;
-                    System.out.println("Você obteve " + hasKey + " chave(s)\nProcure um baú para abri-lo!");
+                    gp.ui.ShowMessage("Você pegou uma chave");
                     break;
                 case "Chest":
                     if(hasKey > 0){
                         gp.obj[i] = null;
                         hasKey--;
-                        System.out.println("Você abriu o baú!\nvocê obteve o seguinte item: espada");
-                        System.out.println("Você tem " + hasKey + " chave(s)");
+                        gp.ui.ShowMessage("Você abriu um baú!");
                     }
+                    gp.ui.gameFinished = true;
+                    gp.stopMusic();
+                    gp.playSoundEff(5);
                     break;
                 case "Door", "Door_iron":
                     if(hasKey > 0){
                         gp.playSoundEff(4);
                         gp.obj[i] = null;
                         hasKey--;
-                        System.out.println("Você tem " + hasKey + " chave(s)");
+                    }else{
+                        gp.ui.ShowMessage("Você precisa de uma chave para abrir!");
                     }
                     break;
 
@@ -156,7 +163,8 @@ public class Player extends Entity {
                     gp.obj[i] = null;
                     gp.playSoundEff(3);
                     speed +=1.4;
-                    System.out.println("Você pegou a bota!");
+                    gp.ui.ShowMessage("Você pegou uma bota de velocidade!");
+                    break;
             }
         }
     }

@@ -10,41 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c1b85905-869f-466e-8713-3c03d1950a61" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/Sound.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/object/OBJ_Boots.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/object/OBJ_Door_iron.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/sound/BlueBoyAdventure.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/sound/Dungeon.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/sound/FinalBattle.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/sound/Merchant.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/sound/blocked.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/sound/burning.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/sound/chipwall.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/sound/coin.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/sound/cursor.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/sound/cuttree.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/sound/dooropen.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/sound/fanfare.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/sound/gameover.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/sound/hitmonster.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/sound/levelup.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/sound/parry.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/sound/powerup.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/sound/receivedamage.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/sound/sleep.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/sound/speak.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/sound/stairs.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/sound/unlock.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/UI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Entity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/AssetSetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/AssetSetter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/CollitionChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/CollitionChecker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GamePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/object/OBJ_Chest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/OBJ_Chest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/object/OBJ_Door.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/OBJ_Door.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/object/OBJ_Key.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/OBJ_Key.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/object/SuperObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/SuperObject.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
