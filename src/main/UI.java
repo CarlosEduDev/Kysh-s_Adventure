@@ -24,7 +24,7 @@ public class UI {
 
         arial_24 = new Font("Arial", Font.PLAIN, 24);
         arial_48B = new Font("Arial", Font.BOLD, 48);
-        OBJ_Key key = new OBJ_Key();
+        OBJ_Key key = new OBJ_Key(gp);
         keyImage = key.image;
     }
 
@@ -74,7 +74,7 @@ public class UI {
         }
         else{
             g2.setFont(arial_24);
-            g2.setColor(Color.yellow);
+            g2.setColor(Color.white);
             g2.drawImage(keyImage, gp.tileSize/2, gp.tileSize/2, gp.tileSize, gp.tileSize, null);
             g2.drawString("x " + gp.player.hasKey,74, 50);
 

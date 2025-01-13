@@ -1,9 +1,11 @@
 package tile;
 
 import main.GamePanel;
+import main.UtilityTool;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,29 +29,25 @@ public class TileManager {
 
     // Carregar imagens dos tiles
     public void getTileImage() {
-        try {
-            tile[0] = new Tile();
-            tile[0].image = ImageIO.read(getClass().getResourceAsStream("/res/Background/tiles/grass01.png"));
+            setup(0, "grass01",false);
+            setup(1, "wall",true);
+            setup(2, "water01",true);
+            setup(3, "earth",false);
+            setup(4, "tree",true);
+            setup(5, "road00",false);
 
-            tile[1] = new Tile();
-            tile[1].image = ImageIO.read(getClass().getResourceAsStream("/res/Background/tiles/wall.png"));
-            tile[1].collition = true;
+    }
 
-            tile[2] = new Tile();
-            tile[2].image = ImageIO.read(getClass().getResourceAsStream("/res/Background/tiles/water01.png"));
-            tile[2].collition = true;
+    public void setup(int index, String imageName, boolean collition){
+        UtilityTool uTool = new UtilityTool();
 
-            tile[3] = new Tile();
-            tile[3].image = ImageIO.read(getClass().getResourceAsStream("/res/Background/tiles/earth.png"));
+        try{
+            tile[index] = new Tile();
+            tile[index].image = ImageIO.read(getClass().getResourceAsStream("/res/Background/tiles/" + imageName + ".png"));
+            tile[index].image = uTool.scaleImage(tile[index].image, gp.tileSize, gp.tileSize);
+            tile[index].collition = collition;
 
-            tile[4] = new Tile();
-            tile[4].image = ImageIO.read(getClass().getResourceAsStream("/res/Background/tiles/tree.png"));
-            tile[4].collition = true;
-
-            tile[5] = new Tile();
-            tile[5].image = ImageIO.read(getClass().getResourceAsStream("/res/Background/tiles/road00.png"));
-
-        } catch (IOException e) {
+        }catch (IOException e){
             e.printStackTrace();
         }
     }
@@ -106,7 +104,7 @@ public class TileManager {
                     worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
                     worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
 
-                g2.drawImage(tile[tileNum].image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+                g2.drawImage(tile[tileNum].image, screenX, screenY, null);
             }
 
             worldCol++;
