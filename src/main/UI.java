@@ -85,7 +85,7 @@ public class UI {
             // Mensagem
             if(messageOn == true){
                 g2.setFont(g2.getFont().deriveFont(30F));
-                g2.drawString(message, gp.tileSize/2, gp.tileSize*5);
+                g2.drawString(message, gp.tileSize*2, gp.tileSize*5);
 
                 menssageCounter++;
 
