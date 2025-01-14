@@ -16,7 +16,6 @@ public class Player extends Entity {
 
     public final int screenX;
     public final int screenY;
-    public int hasKey = 0;
     int standCounter = 0;
     public Player(GamePanel gp, KeyHandler keyH) {
         this.gp = gp;
@@ -141,42 +140,7 @@ public class Player extends Entity {
 
     public void pickUpObject(int i){ // pegar um objeto
         if(i != 999){
-            String objectName = gp.obj[i].name;
 
-            switch (objectName){
-                case "Key":
-                    gp.playSoundEff(2);
-                    gp.obj[i] = null;
-                    hasKey++;
-                    gp.ui.ShowMessage("Você pegou uma chave");
-                    break;
-                case "Chest":
-                    if(hasKey > 0){
-                        gp.obj[i] = null;
-                        hasKey--;
-                        gp.ui.ShowMessage("Você abriu um baú!");
-                    }
-                    gp.ui.gameFinished = true;
-                    gp.stopMusic();
-                    gp.playSoundEff(5);
-                    break;
-                case "Door", "Door_iron":
-                    if(hasKey > 0){
-                        gp.playSoundEff(4);
-                        gp.obj[i] = null;
-                        hasKey--;
-                    }else{
-                        gp.ui.ShowMessage("Você precisa de uma chave para abrir!");
-                    }
-                    break;
-
-                case "Boots":
-                    gp.obj[i] = null;
-                    gp.playSoundEff(3);
-                    speed +=1.4;
-                    gp.ui.ShowMessage("Você pegou uma bota de velocidade!");
-                    break;
-            }
         }
     }
 
