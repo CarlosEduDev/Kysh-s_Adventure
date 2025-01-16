@@ -11,14 +11,12 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class Player extends Entity {
-    GamePanel gp;
     KeyHandler keyH;
-
     public final int screenX;
     public final int screenY;
     int standCounter = 0;
     public Player(GamePanel gp, KeyHandler keyH) {
-        this.gp = gp;
+        super(gp);
         this.keyH = keyH;
 
         screenX = gp.screenWidth/2 - (gp.tileSize/2);
@@ -44,7 +42,11 @@ public class Player extends Entity {
         worldY = gp.tileSize * 21;
         speed = 4;
         direction = "down";
-    } //java -jar caminho\para\seuArquivo.jar
+
+        // PLAYER STATUS
+        maxLife = 6;
+        life = maxLife;
+    }
 
 
     // Carregar imagens do jogador
@@ -59,12 +61,12 @@ public class Player extends Entity {
         right2 = setup("boy_right_2");
     }
 
-    public BufferedImage setup(String ImageName){
+    public BufferedImage setup(String ImagePath){
         UtilityTool uTool = new UtilityTool();
         BufferedImage image = null;
 
         try{
-            image = ImageIO.read(getClass().getResourceAsStream("/res/player/Walking_sprites/" + ImageName + ".png"));
+            image = ImageIO.read(getClass().getResourceAsStream("/res/player/Walking_sprites/" + ImagePath + ".png"));
             image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
         }catch (IOException e){
             e.printStackTrace();
@@ -98,6 +100,15 @@ public class Player extends Entity {
             // checar a colisão dos objetos
             int objIndex = gp.collitionCh.checkObject(this, true);
             pickUpObject(objIndex);
+
+            // checa a colisão com NPC
+            int npcIndex = gp.collitionCh.checkEntity(this, gp.npc);
+            interactNPC(npcIndex);
+
+            // checa evento
+            gp.eHandler.checkEvent();
+            gp.keyHandler.enterPressed = false;
+
             // se a colisão for false, o jogador pode andar
             if(collitionOn == false){
                 switch(direction){
@@ -140,7 +151,15 @@ public class Player extends Entity {
 
     public void pickUpObject(int i){ // pegar um objeto
         if(i != 999){
+        }
+    }
 
+    public void interactNPC(int i){
+        if(i != 999){
+            if(gp.keyHandler.enterPressed){
+                gp.gameState = gp.dialogueState;
+                gp.npc[i].speak();
+            }
         }
     }
 
