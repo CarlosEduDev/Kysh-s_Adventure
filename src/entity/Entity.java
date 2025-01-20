@@ -24,12 +24,15 @@ public class Entity {
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collitionOn = false;
     public int actionLockCounter = 0;
+    public boolean invincible = false;
+    public int invincibleCounter = 0;
     String dialogues[] = new String[20];
     int dialogueIndex = 0;
 
     public BufferedImage image, image2, image3;
     public String name;
     public boolean collition = false;
+    public int type; // 0 - jogador; 1 - npc; 2 - monstro
 
     // CHARACTER STATUS
     public int maxLife;
@@ -71,7 +74,18 @@ public class Entity {
         collitionOn = false;
         gp.collitionCh.checkTile(this);
         gp.collitionCh.checkObject(this, false);
-        gp.collitionCh.checkPlayer(this);
+        gp.collitionCh.checkEntity(this, gp.npc);
+        gp.collitionCh.checkEntity(this, gp.monster);
+        boolean contactPlayer = gp.collitionCh.checkPlayer(this);
+
+        if(this.type == 2 && contactPlayer == true){
+            if(gp.player.invincible == false){
+                // vai dar dano
+                gp.player.life -= 1;
+                gp.player.invincible = true;
+            }
+        }
+
         if(collitionOn == false){
             switch(direction){
                 case "up":
