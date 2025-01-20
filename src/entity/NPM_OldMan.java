@@ -38,7 +38,7 @@ public class NPM_OldMan extends Entity{
 
         actionLockCounter++;
 
-        if(actionLockCounter == 140){
+        if(actionLockCounter == 120){
 
             Random random = new Random();
             int i = random.nextInt(100)+1; // escolhe de 1 a 100;

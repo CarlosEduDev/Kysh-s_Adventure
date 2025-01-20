@@ -1,12 +1,10 @@
 package main;
 
+import entity.Entity;
 import object.OBJ_Heart;
-import object.OBJ_Key;
-import object.SuperObject;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.text.DecimalFormat;
 
 public class UI {
     GamePanel gp;
@@ -27,7 +25,7 @@ public class UI {
         arial_24 = new Font("Cambria", Font.PLAIN, 24);
         arial_48B = new Font("Arial", Font.BOLD, 48);
 
-        SuperObject heart = new OBJ_Heart(gp);
+        Entity heart = new OBJ_Heart(gp);
         heart_full = heart.image;
         hear_half = heart.image2;
         heart_blank = heart.image3;
