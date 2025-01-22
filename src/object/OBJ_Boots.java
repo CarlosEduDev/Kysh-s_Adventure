@@ -13,7 +13,7 @@ public class OBJ_Boots extends Entity {
     public OBJ_Boots(GamePanel gp) {
         super(gp);
         name = "Boots";
-        down1 = setup("/res/object/boots");
+        down1 = setup("/res/object/boots", gp.tileSize, gp.tileSize);
 
         collition = true;
     }

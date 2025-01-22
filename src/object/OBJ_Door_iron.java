@@ -12,7 +12,7 @@ public class OBJ_Door_iron extends Entity {
     public OBJ_Door_iron(GamePanel gp){
         super(gp);
         name = "Door_iron";
-        down1 = setup("/res/objects/door_iron");
+        down1 = setup("/res/objects/door_iron", gp.tileSize, gp.tileSize);
 
         collition = true;
     }
