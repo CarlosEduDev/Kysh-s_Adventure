@@ -19,6 +19,21 @@ public class Entity {
     public int spriteCounter = 0;
     public int spriteNum = 1;
 
+    public int level;
+    public int strenght;
+    public int dexterity;
+    public int attack;
+    public int defense;
+    public int exp;
+    public int nextLevelExp;
+    public int coin;
+    public Entity currentweapon;
+    public Entity currentShield;
+
+    // ATRIBUTO DE ITENS
+    public int attackValue;
+    public int defenseValue;
+
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48); // o Rectangle cria um retângulo invisivel/abstrato
 
     public Rectangle attackArea = new Rectangle(0,0,0,0);

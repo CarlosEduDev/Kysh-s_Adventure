@@ -3,6 +3,8 @@ package entity;
 import main.GamePanel;
 import main.KeyHandler;
 import main.UtilityTool;
+import object.OBJ_Shield_Wood;
+import object.OBJ_Sword_Normal;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -14,6 +16,7 @@ public class Player extends Entity {
     public final int screenX;
     public final int screenY;
     int standCounter = 0;
+    public boolean attackCanceled = false;
     public Player(GamePanel gp, KeyHandler keyH) {
         super(gp);
         this.keyH = keyH;
@@ -49,6 +52,25 @@ public class Player extends Entity {
         // PLAYER STATUS
         maxLife = 6;
         life = maxLife;
+        level = 1;
+        strenght = 1;
+        dexterity = 1;
+        exp = 0;
+        nextLevelExp = 5;
+        coin = 0;
+        currentweapon = new OBJ_Sword_Normal(gp);
+        currentShield = new OBJ_Shield_Wood(gp);
+        attack = getAttack();
+        defense = getDefense();
+    }
+
+    private int getAttack() {
+
+        return attack = strenght * currentweapon.attackValue;
+    }
+
+    private int getDefense() {
+        return defense = dexterity * currentShield.defenseValue;
     }
 
 
@@ -125,7 +147,13 @@ public class Player extends Entity {
                 }
             }
 
+            if(keyH.enterPressed == true && attackCanceled == false){
+                attacking = true;
+                spriteCounter = 0;
+            }
+
             gp.keyHandler.enterPressed = false;
+            attackCanceled = false;
 
             spriteCounter++;
             if(spriteCounter > 12){
@@ -226,14 +254,11 @@ public class Player extends Entity {
     public void interactNPC(int i){
         if(gp.keyHandler.enterPressed == true){
             if(i != 999){
+                attackCanceled = true;
                 gp.playSoundEff(8);
                 gp.gameState = gp.dialogueState;
                 gp.npc[i].speak();
             }
-            else{
-                attacking = true;
-            }
-
         }
     }
 
