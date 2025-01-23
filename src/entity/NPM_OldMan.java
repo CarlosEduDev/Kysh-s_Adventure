@@ -28,11 +28,11 @@ public class NPM_OldMan extends Entity{
     }
 
     public void setDialogue(){
-        dialogues[0] = "Boa viagem, paladino!";
-        dialogues[1] = "Boas vindas ao Reino de Varrock, viajante!";
-        dialogues[2] = "Suponho que esteja aqui pelo tesouro sagrado.";
-        dialogues[3] = "Quase me esqueci de me apresentar! Meu nome \né Kyllert, o guardião mago desse reino, prazer!";
-        dialogues[4] = "Infelizmente estou velho demais para me \naventurar em busca do tesouro sagrado, logo\nirei me aposentar haha!";
+        dialogues[0] = "Boas vindas ao Reino de Varrock, viajante!";
+        dialogues[1] = "Suponho que esteja aqui pelo tesouro sagrado.";
+        dialogues[2] = "Quase me esqueci de me apresentar! Meu nome \né Dan, o guardião mago desse reino, prazer!";
+        dialogues[3] = "Infelizmente estou velho demais para me \naventurar em busca do tesouro sagrado, logo\nirei me aposentar haha!";
+        dialogues[4] = "Boa viagem, jovem paladino!";
     }
     public void setAction(){
 

@@ -205,11 +205,14 @@ public class Player extends Entity {
 
         if(i != 999){
             if(gp.monster[i].invincible == false){
+                gp.playSoundEff(6);
                 gp.monster[i].life -= 1;
                 gp.monster[i].invincible = true;
+                gp.monster[i].damageReaction();
+//                gp.monster[i].speed+=1;
 
                 if(gp.monster[i].life <= 0){
-                    gp.monster[i] = null;
+                    gp.monster[i].dying = true;
                 }
             }
         }
@@ -223,6 +226,7 @@ public class Player extends Entity {
     public void interactNPC(int i){
         if(gp.keyHandler.enterPressed == true){
             if(i != 999){
+                gp.playSoundEff(8);
                 gp.gameState = gp.dialogueState;
                 gp.npc[i].speak();
             }
@@ -237,6 +241,7 @@ public class Player extends Entity {
         if(index != 999){
 
             if(invincible == false){
+                gp.playSoundEff(7);
                 life -= 1;
                 invincible = true;
             }
