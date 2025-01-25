@@ -91,6 +91,7 @@ public class EventHandler {
             gp.gameState = gameState;
             gp.ui.currentDialogue = "Você regenerou sua vida bebendo \na água da lagoa!";
             gp.player.life = gp.player.maxLife;
+            gp.aSetter.setMonster();
         }
     }
 }

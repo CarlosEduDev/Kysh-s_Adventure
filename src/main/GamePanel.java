@@ -66,8 +66,6 @@ public class GamePanel extends JPanel implements Runnable{
         aSetter.setObject();
         aSetter.setNPC();
         aSetter.setMonster();
-//        playMusic(1);
-//        stopMusic();
         gameState = titleState;
     }
 
@@ -140,7 +138,7 @@ public class GamePanel extends JPanel implements Runnable{
 
         // DEBUG
         long drawStart = 0;
-        if(keyHandler.checkDrawTime == true){
+        if(keyHandler.checkDebug == true){
             drawStart = System.nanoTime();
 
         }
@@ -197,12 +195,20 @@ public class GamePanel extends JPanel implements Runnable{
             ui.draw(g2);
         }
         // DEBUG
-        if(keyHandler.checkDrawTime == true){
+        if(keyHandler.checkDebug == true){
             long drawEnd = System.nanoTime();
             long passed = drawEnd - drawStart;
+
+            g2.setFont(new Font("Arial", Font.PLAIN, 20));
             g2.setColor(Color.white);
-            g2.drawString("Tempo de desenho: " + passed, 10, 400);
-            System.out.println("Tempo de desenho: " + passed);
+            int x = 10;
+            int y = 400;
+            int lineHeight = 30;
+
+            g2.drawString("WorldX " + player.worldX, x, y); y+= lineHeight;
+            g2.drawString("WorldY " + player.worldY, x, y); y+= lineHeight;
+            g2.drawString("Coluna " + (player.worldX + player.solidArea.x)/ tileSize, x, y); y+= lineHeight;
+            g2.drawString("Linha " + (player.worldY + player.solidArea.y)/ tileSize, x, y); y+= lineHeight;
 
         }
 

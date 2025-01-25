@@ -3,6 +3,7 @@ package entity;
 import main.GamePanel;
 import main.KeyHandler;
 import main.UtilityTool;
+import object.OBJ_Key;
 import object.OBJ_Shield_Wood;
 import object.OBJ_Sword_Normal;
 
@@ -10,6 +11,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Player extends Entity {
     KeyHandler keyH;
@@ -17,6 +19,8 @@ public class Player extends Entity {
     public final int screenY;
     int standCounter = 0;
     public boolean attackCanceled = false;
+    public ArrayList<Entity> inventory = new ArrayList<>();
+    public final int maxInventorySize = 20;
     public Player(GamePanel gp, KeyHandler keyH) {
         super(gp);
         this.keyH = keyH;
@@ -40,6 +44,7 @@ public class Player extends Entity {
         setDefaultValues();
         getPlayerImage();
         getPlayerAttackIMG();
+        setItems();
     }
 
     // Definir valores padrões
@@ -64,13 +69,16 @@ public class Player extends Entity {
         defense = getDefense();
     }
 
-    private int getAttack() {
-
-        return attack = strenght * currentweapon.attackValue;
+    public void setItems(){
+        inventory.add(currentweapon);
+        inventory.add(currentShield);
+        inventory.add(new OBJ_Key(gp));
     }
 
-    private int getDefense() {
-        return defense = dexterity * currentShield.defenseValue;
+    private int getAttack() {return attack = strenght * currentweapon.attackValue;
+    }
+
+    private int getDefense() {return defense = dexterity * currentShield.defenseValue;
     }
 
 
@@ -234,15 +242,40 @@ public class Player extends Entity {
         if(i != 999){
             if(gp.monster[i].invincible == false){
                 gp.playSoundEff(6);
-                gp.monster[i].life -= 1;
+
+                int damage = attack - gp.monster[i].defense;
+                if(damage < 0){
+                    damage = 0;
+                }
+
+                gp.monster[i].life -= damage;
+                gp.ui.addMessage(damage + " de dano");
                 gp.monster[i].invincible = true;
                 gp.monster[i].damageReaction();
-//                gp.monster[i].speed+=1;
 
                 if(gp.monster[i].life <= 0){
                     gp.monster[i].dying = true;
+//                    gp.ui.addMessage("você matou " + gp.monster[i].name + "!");
+                    gp.ui.expMessage("EXP + " + gp.monster[i].exp);
+                    exp += gp.monster[i].exp;
+                    checkLevelUp();
                 }
             }
+        }
+    }
+
+    private void checkLevelUp() {
+        if(exp >= nextLevelExp){
+            level++;
+            nextLevelExp = nextLevelExp*2;
+            maxLife += 2;
+            strenght++;
+            dexterity++;
+            attack = getAttack();
+            defense = getDefense();
+            gp.playSoundEff(9);
+            gp.gameState = gp.dialogueState;
+            gp.ui.currentDialogue = "Você aumentou seu nível.\nSeu nível atual: " + level;
         }
     }
 
@@ -267,7 +300,13 @@ public class Player extends Entity {
 
             if(invincible == false){
                 gp.playSoundEff(7);
-                life -= 1;
+
+                int damage = gp.monster[index].attack - defense;
+                if(damage < 0){
+                    damage = 0;
+                }
+
+                life -= damage;
                 invincible = true;
             }
         }

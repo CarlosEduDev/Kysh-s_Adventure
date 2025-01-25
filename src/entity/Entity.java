@@ -33,6 +33,7 @@ public class Entity {
     // ATRIBUTO DE ITENS
     public int attackValue;
     public int defenseValue;
+    public String descripton = "";
 
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48); // o Rectangle cria um retângulo invisivel/abstrato
 
@@ -101,7 +102,12 @@ public class Entity {
             if(gp.player.invincible == false){
                 // vai dar dano
                 gp.playSoundEff(7);
-                gp.player.life -= 1;
+                int damage = attack - gp.player.defense;
+                if(damage < 0){
+                    damage = 0;
+                }
+
+                gp.player.life -= damage;
                 gp.player.invincible = true;
             }
         }
