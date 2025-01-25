@@ -162,6 +162,9 @@ public class KeyHandler implements KeyListener {
                 gp.playSoundEff(10);
             }
         }
+        if(code == KeyEvent.VK_ENTER){
+            gp.player.selectItem();
+        }
     }
     @Override
     public void keyReleased(KeyEvent e) {

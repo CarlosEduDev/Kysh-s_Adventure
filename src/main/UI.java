@@ -93,8 +93,15 @@ public class UI {
 
         // DESENHAR ITENS DO JOGADOR
         for(int i = 0; i < gp.player.inventory.size(); i++){
-            g2.drawImage(gp.player.inventory.get(i).down1, slotX, slotY, null);
 
+            // EQUIPAR
+            if(gp.player.inventory.get(i) == gp.player.currentweapon ||
+               gp.player.inventory.get(i) == gp.player.currentShield){
+                g2.setColor(new Color(240, 190, 90));
+                g2.fillRoundRect(slotX, slotY, gp.tileSize, gp.tileSize, 10, 10);
+            }
+
+            g2.drawImage(gp.player.inventory.get(i).down1, slotX, slotY, null);
             slotX += slotSize;
 
             if(i == 4 || i == 9 || i == 14){
@@ -120,7 +127,6 @@ public class UI {
         int dFrameY = frameY + frameHeight;
         int dFrameWidth = frameWidth;
         int dFrameHeight = gp.tileSize*3;
-        drawWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight);
 
         // TEXTO DESCRIÇÃO DOS ITENS
         int textX = dFrameX + 20;
@@ -130,6 +136,8 @@ public class UI {
         int itemIndex = getItemIndexOnSlot();
 
         if(itemIndex < gp.player.inventory.size()){
+
+            drawWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight);
 
             for(String line: gp.player.inventory.get(itemIndex).descripton.split("\n")){
                 g2.drawString(line, textX, textY);

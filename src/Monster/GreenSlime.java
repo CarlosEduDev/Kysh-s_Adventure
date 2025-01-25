@@ -11,7 +11,7 @@ public class GreenSlime extends Entity {
         super(gp);
         this.gp = gp;
 
-        type = 2;
+        type = type_monster;
         name = "Slime verde";
         speed = 1;
         maxLife = 4;

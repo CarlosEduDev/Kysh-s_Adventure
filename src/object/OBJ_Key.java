@@ -9,7 +9,7 @@ public class OBJ_Key extends Entity {
         super(gp);
         name = "Chave";
         down1 = setup("/res/objects/key", gp.tileSize, gp.tileSize);
-        descripton = "[" + name + "]\nUma chave para abrir\numa porta.";
-//        collition = true;
+        descripton = "[ " + name + " ]\nUma chave para abrir\numa porta.";
+        collition = true;
     }
 }

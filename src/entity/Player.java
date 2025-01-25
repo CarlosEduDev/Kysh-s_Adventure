@@ -38,9 +38,6 @@ public class Player extends Entity {
         solidArea.width = 30;
         solidArea.height = 28;
 
-        attackArea.width = 36;
-        attackArea.height = 36;
-
         setDefaultValues();
         getPlayerImage();
         getPlayerAttackIMG();
@@ -75,7 +72,10 @@ public class Player extends Entity {
         inventory.add(new OBJ_Key(gp));
     }
 
-    private int getAttack() {return attack = strenght * currentweapon.attackValue;
+    private int getAttack() {
+        attackArea = currentweapon.attackArea;
+
+        return attack = strenght * currentweapon.attackValue;
     }
 
     private int getDefense() {return defense = dexterity * currentShield.defenseValue;
@@ -95,14 +95,30 @@ public class Player extends Entity {
     }
 
     public void getPlayerAttackIMG(){
-        attackUp1 = setup("/res/player/boy_attack_up_1", gp.tileSize, gp.tileSize*2);
-        attackUp2 = setup("/res/player/boy_attack_up_2", gp.tileSize, gp.tileSize*2);
-        attackDown1 = setup("/res/player/boy_attack_down_1", gp.tileSize, gp.tileSize*2);
-        attackDown2 = setup("/res/player/boy_attack_down_2", gp.tileSize, gp.tileSize*2);
-        attackLeft1 = setup("/res/player/boy_attack_left_1", gp.tileSize*2, gp.tileSize);
-        attackLeft2 = setup("/res/player/boy_attack_left_2", gp.tileSize*2, gp.tileSize);
-        attackRight1 = setup("/res/player/boy_attack_right_1", gp.tileSize*2, gp.tileSize);
-        attackRight2 = setup("/res/player/boy_attack_right_2", gp.tileSize*2, gp.tileSize);
+
+        if(currentweapon.type == type_sword){
+            attackUp1 = setup("/res/player/boy_attack_up_1", gp.tileSize, gp.tileSize*2);
+            attackUp2 = setup("/res/player/boy_attack_up_2", gp.tileSize, gp.tileSize*2);
+            attackDown1 = setup("/res/player/boy_attack_down_1", gp.tileSize, gp.tileSize*2);
+            attackDown2 = setup("/res/player/boy_attack_down_2", gp.tileSize, gp.tileSize*2);
+            attackLeft1 = setup("/res/player/boy_attack_left_1", gp.tileSize*2, gp.tileSize);
+            attackLeft2 = setup("/res/player/boy_attack_left_2", gp.tileSize*2, gp.tileSize);
+            attackRight1 = setup("/res/player/boy_attack_right_1", gp.tileSize*2, gp.tileSize);
+            attackRight2 = setup("/res/player/boy_attack_right_2", gp.tileSize*2, gp.tileSize);
+
+        }
+
+        if(currentweapon.type == type_axe){
+            attackUp1 = setup("/res/player/boy_axe_up_1", gp.tileSize, gp.tileSize*2);
+            attackUp2 = setup("/res/player/boy_axe_up_2", gp.tileSize, gp.tileSize*2);
+            attackDown1 = setup("/res/player/boy_axe_down_1", gp.tileSize, gp.tileSize*2);
+            attackDown2 = setup("/res/player/boy_axe_down_2", gp.tileSize, gp.tileSize*2);
+            attackLeft1 = setup("/res/player/boy_axe_left_1", gp.tileSize*2, gp.tileSize);
+            attackLeft2 = setup("/res/player/boy_axe_left_2", gp.tileSize*2, gp.tileSize);
+            attackRight1 = setup("/res/player/boy_axe_right_1", gp.tileSize*2, gp.tileSize);
+            attackRight2 = setup("/res/player/boy_axe_right_2", gp.tileSize*2, gp.tileSize);
+
+        }
     }
 
     // Atualizar posição e direção do jogador
@@ -281,6 +297,16 @@ public class Player extends Entity {
 
     public void pickUpObject(int i){ // pegar um objeto
         if(i != 999){
+            String text = "";
+            if(inventory.size() != maxInventorySize){
+                inventory.add(gp.obj[i]);
+                gp.playSoundEff(2);
+            }
+            else{
+                text = "Seu inventário está cheio.";
+            }
+            gp.ui.addMessage(text);
+            gp.obj[i] = null;
         }
     }
 
@@ -312,6 +338,29 @@ public class Player extends Entity {
         }
     }
 
+    public void selectItem(){
+        int itemIndex = gp.ui.getItemIndexOnSlot();
+
+        if(itemIndex < inventory.size()){
+            Entity selectedItem = inventory.get(itemIndex);
+
+            if(selectedItem.type == type_sword || selectedItem.type == type_axe){
+                currentweapon = selectedItem;
+                attack = getAttack();
+                getPlayerAttackIMG();
+            }
+
+            if(selectedItem.type == type_shield){
+                currentShield = selectedItem;
+                defense = getDefense();
+            }
+
+            if(selectedItem.type == type_consumable){
+                selectedItem.use(this);
+                inventory.remove(itemIndex);
+            }
+        }
+    }
     // Desenhar o jogador na tela
     public void draw(Graphics2D g2) {
         BufferedImage image = null;

@@ -58,7 +58,16 @@ public class Entity {
     public BufferedImage image, image2, image3;
     public String name;
     public boolean collition = false;
+
+    // TYPE
     public int type; // 0 - jogador; 1 - npc; 2 - monstro
+    public final int type_player = 0;
+    public final int type_npc = 1;
+    public final int type_monster = 2;
+    public final int type_sword = 3;
+    public final int type_axe = 4;
+    public final int type_shield = 5;
+    public final int type_consumable = 6;
 
     // CHARACTER STATUS
     public int maxLife;
@@ -88,6 +97,8 @@ public class Entity {
         }
     }
 
+    public void use(Entity entity){}
+
     public void update(){
         setAction();
 
@@ -98,7 +109,7 @@ public class Entity {
         gp.collitionCh.checkEntity(this, gp.monster);
         boolean contactPlayer = gp.collitionCh.checkPlayer(this);
 
-        if(this.type == 2 && contactPlayer == true){
+        if(this.type == type_monster && contactPlayer == true){
             if(gp.player.invincible == false){
                 // vai dar dano
                 gp.playSoundEff(7);

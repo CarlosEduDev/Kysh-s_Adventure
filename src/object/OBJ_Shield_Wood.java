@@ -9,8 +9,9 @@ public class OBJ_Shield_Wood extends Entity {
         super(gp);
 
         name = "Escudo de madeira";
+        type = type_shield;
         down1 = setup("/res/objects/shield_wood", gp.tileSize, gp.tileSize);
         defenseValue = 1;
-        descripton = "[" + name + "]\nUm escudo velho.";
+        descripton = "[ " + name + " ]\nUm escudo velho\nDefesa: " + defenseValue;
     }
 }
