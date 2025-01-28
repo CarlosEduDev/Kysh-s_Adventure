@@ -7,7 +7,7 @@ public class KeyHandler implements KeyListener {
 
     GamePanel gp;
 
-    public boolean  upPressed, downPressed, leftPressed, rightPressed, enterPressed;
+    public boolean  upPressed, downPressed, leftPressed, rightPressed, enterPressed, shotKeyPressed;
     //DEBUG
     boolean checkDebug = false;
 
@@ -74,7 +74,32 @@ public class KeyHandler implements KeyListener {
                 System.exit(0);
             }
         }
+    {if(code == KeyEvent.VK_W || code == KeyEvent.VK_UP){
+        gp.ui.commandNum--;
+        if(gp.ui.commandNum < 0){
+            gp.ui.commandNum = 2;
+        }
     }
+
+        if(code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN){
+            gp.ui.commandNum++;
+            if(gp.ui.commandNum > 2){
+                gp.ui.commandNum = 0;
+            }
+        }
+
+        if(code == KeyEvent.VK_ENTER){
+            if(gp.ui.commandNum == 0){
+                gp.gameState = gp.playState;
+            }
+            if(gp.ui.commandNum == 1){
+                // add dps
+            }
+            if(gp.ui.commandNum == 2){
+                System.exit(0);
+            }
+        }
+    }}
 
     public void playState(int code) {
         if (code == KeyEvent.VK_W) {
@@ -105,6 +130,9 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_ESCAPE) {
             gp.gameState = gp.titleState;
             gp.stopMusic();
+        }
+        if (code == KeyEvent.VK_F) {
+            shotKeyPressed = true;
         }
 
         // DEBUG
@@ -184,6 +212,9 @@ public class KeyHandler implements KeyListener {
 
         if(code == KeyEvent.VK_D){
             rightPressed = false;
+        }
+        if (code == KeyEvent.VK_F) {
+            shotKeyPressed = false;
         }
     }
 }

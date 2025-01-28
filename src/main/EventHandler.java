@@ -89,8 +89,9 @@ public class EventHandler {
         if(gp.keyHandler.enterPressed == true){
             gp.player.attackCanceled = true;
             gp.gameState = gameState;
-            gp.ui.currentDialogue = "Você regenerou sua vida bebendo \na água da lagoa!";
+            gp.ui.currentDialogue = "Você regenerou sua vida e mana bebendo \na água da lagoa!";
             gp.player.life = gp.player.maxLife;
+            gp.player.mana = gp.player.maxMana;
             gp.aSetter.setMonster();
         }
     }

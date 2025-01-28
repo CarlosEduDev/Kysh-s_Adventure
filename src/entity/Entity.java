@@ -47,9 +47,16 @@ public class Entity {
     public boolean dying = false;
     boolean hpBarOn = false;
 
+    public int ammo;
     int dyingCounter = 0;
     int hpBarCounter = 0;
 
+    public int maxMana;
+    public int mana;
+    public ProjectTile projectTile;
+    public int shotAvailableCounter = 0;
+
+    public int useCost;
 
     public int invincibleCounter = 0;
     String dialogues[] = new String[20];
@@ -110,17 +117,7 @@ public class Entity {
         boolean contactPlayer = gp.collitionCh.checkPlayer(this);
 
         if(this.type == type_monster && contactPlayer == true){
-            if(gp.player.invincible == false){
-                // vai dar dano
-                gp.playSoundEff(7);
-                int damage = attack - gp.player.defense;
-                if(damage < 0){
-                    damage = 0;
-                }
-
-                gp.player.life -= damage;
-                gp.player.invincible = true;
-            }
+            damagePlayer(attack);
         }
 
         if(collitionOn == false){
@@ -146,6 +143,9 @@ public class Entity {
                 invincible = false;
                 invincibleCounter = 0;
             }
+        }
+        if(shotAvailableCounter < 30){
+            shotAvailableCounter++;
         }
     }
 
@@ -225,6 +225,20 @@ public class Entity {
 
     }
 
+    public void damagePlayer(int attack){
+        if(gp.player.invincible == false){
+            // vai dar dano
+            gp.playSoundEff(7);
+            int damage = attack - gp.player.defense;
+            if(damage < 0){
+                damage = 0;
+            }
+
+            gp.player.life -= damage;
+            gp.player.invincible = true;
+        }
+    }
+
     private void dyingAnimation(Graphics2D g2) {
         dyingCounter++;
 
@@ -239,7 +253,6 @@ public class Entity {
         if(dyingCounter > i*6 && dyingCounter <= i*7){changeAlpha(g2, 0f);}
         if(dyingCounter > i*7 && dyingCounter <= i*8){changeAlpha(g2, 1f);}
         if(dyingCounter > i*8){
-            dying = false;
             alive = false;
         }
     }

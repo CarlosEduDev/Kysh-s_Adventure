@@ -3,9 +3,7 @@ package entity;
 import main.GamePanel;
 import main.KeyHandler;
 import main.UtilityTool;
-import object.OBJ_Key;
-import object.OBJ_Shield_Wood;
-import object.OBJ_Sword_Normal;
+import object.*;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -54,6 +52,9 @@ public class Player extends Entity {
         // PLAYER STATUS
         maxLife = 6;
         life = maxLife;
+        maxMana = 4;
+        mana = maxMana;
+        ammo = 10;
         level = 1;
         strenght = 1;
         dexterity = 1;
@@ -64,6 +65,8 @@ public class Player extends Entity {
         currentShield = new OBJ_Shield_Wood(gp);
         attack = getAttack();
         defense = getDefense();
+        projectTile = new OBJ_fireball(gp);
+//        projectTile = new OBJ_Rock(gp);
     }
 
     public void setItems(){
@@ -129,18 +132,10 @@ public class Player extends Entity {
         }
         else if(keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true || keyH.rightPressed == true || keyH.enterPressed == true){
 
-            if (keyH.upPressed) {
-                direction = "up";
-            }
-            else if (keyH.downPressed) {
-                direction = "down";
-            }
-            else if (keyH.leftPressed) {
-                direction = "left";
-            }
-            else if (keyH.rightPressed) {
-                direction = "right";
-            }
+            if (keyH.upPressed) {direction = "up";}
+            else if (keyH.downPressed) {direction = "down";}
+            else if (keyH.leftPressed) {direction = "left";}
+            else if (keyH.rightPressed) {direction = "right";}
 
             //checa a colisão dos tile
             collitionOn = false;
@@ -199,6 +194,22 @@ public class Player extends Entity {
             }
         }
 
+        if(gp.keyHandler.shotKeyPressed == true && projectTile.alive == false
+                && shotAvailableCounter == 30 && projectTile.haveResource(this) == true){
+            // configura coordenadas, direções e usuário padrões
+            projectTile.set(worldX, worldY, direction, true, this);
+
+            // SUBTRAI O CUSTO DE MANA
+            projectTile.subtractResource(this);
+
+            // adicionar a lista
+            gp.projectileList.add(projectTile);
+
+            shotAvailableCounter = 0;
+
+            gp.playSoundEff(11);
+        }
+
         if(invincible == true){
             invincibleCounter++;
 
@@ -206,6 +217,10 @@ public class Player extends Entity {
                 invincible = false;
                 invincibleCounter = 0;
             }
+        }
+
+        if(shotAvailableCounter < 30){
+            shotAvailableCounter++;
         }
 
     }
@@ -237,7 +252,7 @@ public class Player extends Entity {
             solidArea.height = attackArea.height;
 
             int monsterIndex = gp.collitionCh.checkEntity(this, gp.monster);
-            damageMonster(monsterIndex);
+            damageMonster(monsterIndex, attack);
 
             worldX = currentWorldX;
             worldY = currentWorldY;
@@ -253,7 +268,7 @@ public class Player extends Entity {
         }
     }
 
-    private void damageMonster(int i) {
+    public void damageMonster(int i, int attack) {
 
         if(i != 999){
             if(gp.monster[i].invincible == false){
@@ -280,7 +295,7 @@ public class Player extends Entity {
         }
     }
 
-    private void checkLevelUp() {
+    public void checkLevelUp() {
         if(exp >= nextLevelExp){
             level++;
             nextLevelExp = nextLevelExp*2;
@@ -324,7 +339,7 @@ public class Player extends Entity {
     public void contactMonster(int index){
         if(index != 999){
 
-            if(invincible == false){
+            if(invincible == false && gp.monster[index].dying == false){
                 gp.playSoundEff(7);
 
                 int damage = gp.monster[index].attack - defense;

@@ -2,6 +2,7 @@ package main;
 
 import entity.Entity;
 import object.OBJ_Heart;
+import object.OBJ_Mana;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -13,7 +14,7 @@ public class UI {
 
     Graphics2D g2;
     public boolean messageOn = false;
-    BufferedImage heart_full, hear_half, heart_blank;
+    BufferedImage heart_full, hear_half, heart_blank, mana_full, mana_blank;
 
     ArrayList<String> message = new ArrayList<>();
     ArrayList<Integer> messageCounter = new ArrayList<>();
@@ -38,6 +39,10 @@ public class UI {
         heart_full = heart.image;
         hear_half = heart.image2;
         heart_blank = heart.image3;
+
+        Entity mana = new OBJ_Mana(gp);
+        mana_full = mana.image;
+        mana_blank = mana.image2;
     }
 
     public void draw(Graphics2D g2){
@@ -222,6 +227,8 @@ public class UI {
 
         g2.drawString("Vida", textX, textY);
         textY += lineHeight;
+        g2.drawString("Mana", textX, textY);
+        textY += lineHeight;
 
         g2.drawString("Força", textX, textY);
         textY += lineHeight;
@@ -242,10 +249,10 @@ public class UI {
         textY += lineHeight;
 
         g2.drawString("Moedas", textX, textY);
-        textY += lineHeight + 20;
+        textY += lineHeight + 10;
 
         g2.drawString("Espada", textX, textY);
-        textY += lineHeight + 15;
+        textY += lineHeight + 14;
 
         g2.drawString("Escudo", textX, textY);
         textY += lineHeight;
@@ -262,6 +269,11 @@ public class UI {
         textY += lineHeight;
 
         value = String.valueOf(gp.player.life + "/" + gp.player.maxLife);
+        textX = getXforAlignToRightText(value, tailX);
+        g2.drawString(value, textX, textY);
+        textY += lineHeight;
+
+        value = String.valueOf(gp.player.mana + "/" + gp.player.maxMana);
         textX = getXforAlignToRightText(value, tailX);
         g2.drawString(value, textX, textY);
         textY += lineHeight;
@@ -301,9 +313,9 @@ public class UI {
         g2.drawString(value, textX, textY);
         textY += lineHeight;
 
-        g2.drawImage(gp.player.currentweapon.down1, tailX - gp.tileSize, textY-15, null);
+        g2.drawImage(gp.player.currentweapon.down1, tailX - gp.tileSize, textY-24, null);
         textY += gp.tileSize;
-        g2.drawImage(gp.player.currentShield.down1, tailX - gp.tileSize, textY-13, null);
+        g2.drawImage(gp.player.currentShield.down1, tailX - gp.tileSize, textY-24, null);
     }
 
     public void drawPlayerLife(){
@@ -333,6 +345,28 @@ public class UI {
             i++;
             x+= gp.tileSize;
         }
+
+        // DESENHA MANA MAXIMA
+        x = (gp.tileSize/2) - 5;
+        y = (int)(gp.tileSize*1.5);
+        i = 0;
+
+        while(i < gp.player.maxMana){
+            g2.drawImage(mana_blank,x, y, null);
+            i++;
+            x += 35;
+        }
+
+        // DESENHA MANA
+        x = (gp.tileSize/2) - 5;
+        y = (int)(gp.tileSize*1.5);
+        i = 0;
+        while(i < gp.player.mana){
+            g2.drawImage(mana_full, x, y, null);
+            i++;
+            x += 35;
+        }
+
     }
 
     public void addMessage(String text){

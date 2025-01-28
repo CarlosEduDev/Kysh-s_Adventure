@@ -10,19 +10,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c1b85905-869f-466e-8713-3c03d1950a61" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/object/OBJ_Axe.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/object/OBJ_Blue_Shield.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/object/OBJ_Potion_Red.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entity/ProjectTile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/object/OBJ_Mana.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/object/OBJ_Rock.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/object/OBJ_fireball.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/projectile/fireball_down_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/projectile/fireball_down_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/projectile/fireball_left_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/projectile/fireball_left_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/projectile/fireball_right_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/projectile/fireball_right_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/projectile/fireball_up_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/projectile/fireball_up_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/projectile/rock_down_1.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Monster/GreenSlime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Monster/GreenSlime.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Entity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/AssetSetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/AssetSetter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/EventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/EventHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GamePanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/KeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/KeyHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Sound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Sound.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/UI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/object/OBJ_Key.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/OBJ_Key.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/object/OBJ_Shield_Wood.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/OBJ_Shield_Wood.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/object/OBJ_Sword_Normal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/OBJ_Sword_Normal.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,6 +73,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;development&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/eduar/OneDrive/Área de Trabalho/LinguagensNovas/Aprendendo-Java/game/src/res/player&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
