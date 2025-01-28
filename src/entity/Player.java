@@ -153,6 +153,9 @@ public class Player extends Entity {
             int monsterIndex = gp.collitionCh.checkEntity(this, gp.monster);
             contactMonster(monsterIndex);
 
+            // checa colião dos tiles interativos
+            gp.collitionCh.checkEntity(this,gp.iTile);
+
             // checa evento
             gp.eHandler.checkEvent();
 
@@ -223,6 +226,14 @@ public class Player extends Entity {
             shotAvailableCounter++;
         }
 
+        if(life > maxLife){
+            life = maxLife;
+        }
+
+        if(mana > maxMana){
+            mana = maxMana;
+        }
+
     }
 
     private void attacking() {
@@ -254,6 +265,9 @@ public class Player extends Entity {
             int monsterIndex = gp.collitionCh.checkEntity(this, gp.monster);
             damageMonster(monsterIndex, attack);
 
+            int iTileIndex = gp.collitionCh.checkEntity(this, gp.iTile);
+            damageInteractive(iTileIndex);
+
             worldX = currentWorldX;
             worldY = currentWorldY;
             solidArea.width = solidAreaWidth;
@@ -265,6 +279,19 @@ public class Player extends Entity {
             spriteNum = 1;
             spriteCounter = 0;
             attacking = false;
+        }
+    }
+
+    public void damageInteractive(int i) {
+        if(i != 999 && gp.iTile[i].destructible == true
+                && gp.iTile[i].isCorrectItem(this) == true && gp.iTile[i].invincible == false){
+            gp.iTile[i].playSE();
+            gp.iTile[i].life--;
+            gp.iTile[i].invincible = true;
+
+            if(gp.iTile[i].life == 0){
+                gp.iTile[i] = gp.iTile[i].getDestroyedForm();
+            }
         }
     }
 
@@ -312,17 +339,26 @@ public class Player extends Entity {
 
     public void pickUpObject(int i){ // pegar um objeto
         if(i != 999){
-            String text = "";
-            if(inventory.size() != maxInventorySize){
-                inventory.add(gp.obj[i]);
-                gp.playSoundEff(2);
+            // pegar apenas itens
+            if(gp.obj[i].type == type_pickUpOnly){
+                gp.obj[i].use(this);
+                gp.obj[i] = null;
             }
+            // itens do inventário
             else{
-                text = "Seu inventário está cheio.";
+                String text = "";
+                if(inventory.size() != maxInventorySize){
+                    inventory.add(gp.obj[i]);
+                    gp.playSoundEff(2);
+                }
+                else{
+                    text = "Seu inventário está cheio.";
+                }
+                gp.ui.addMessage(text);
+                gp.obj[i] = null;
             }
-            gp.ui.addMessage(text);
-            gp.obj[i] = null;
         }
+
     }
 
     public void interactNPC(int i){

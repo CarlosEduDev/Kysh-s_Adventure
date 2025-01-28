@@ -10,28 +10,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c1b85905-869f-466e-8713-3c03d1950a61" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/entity/ProjectTile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/object/OBJ_Mana.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/object/OBJ_Rock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/object/OBJ_fireball.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/projectile/fireball_down_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/projectile/fireball_down_2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/projectile/fireball_left_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/projectile/fireball_left_2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/projectile/fireball_right_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/projectile/fireball_right_2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/projectile/fireball_up_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/projectile/fireball_up_2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/projectile/rock_down_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/object/OBJ_Coin_Bronze.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/Background/tiles/trunk.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/interactive/destructiblewall.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/interactive/drytree.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/interactive/metalplate.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tile_interactive/IT_DryTree.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tile_interactive/IT_Trunk.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tile_interactive/InteractiveTile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Monster/GreenSlime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Monster/GreenSlime.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Entity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/EventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/EventHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/AssetSetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/AssetSetter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GamePanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/KeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/KeyHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Sound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Sound.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/UI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/object/OBJ_Heart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/OBJ_Heart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/object/OBJ_Mana.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/OBJ_Mana.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/object/OBJ_Potion_Red.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/OBJ_Potion_Red.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/maps/world01.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/maps/world01.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tile/TileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tile/TileManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,6 +86,7 @@
       <recent name="C:\Users\eduar\OneDrive\Área de Trabalho\LinguagensNovas\Aprendendo-Java\game\src\res\player" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\eduar\OneDrive\Área de Trabalho\LinguagensNovas\Aprendendo-Java\game\src\res\Background\tiles" />
       <recent name="C:\Users\eduar\OneDrive\Área de Trabalho\LinguagensNovas\Aprendendo-Java\game\src\res\player\Walking" />
     </key>
   </component>
