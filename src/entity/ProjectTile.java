@@ -24,9 +24,8 @@ public class ProjectTile extends Entity{
                 int monsterIndex = gp.collitionCh.checkEntity(this, gp.monster);
                 if(monsterIndex != 999){
                     gp.player.damageMonster(monsterIndex, attack);
+                    generateParticle(user.projectTile, gp.monster[monsterIndex]);
                     alive = false;
-
-
                 }
             }
             if(user != gp.player){
@@ -34,6 +33,7 @@ public class ProjectTile extends Entity{
 
                 if(gp.player.invincible == false && contactPlayer == true){
                     damagePlayer(attack);
+                    generateParticle(user.projectTile, gp.player);
                     alive = false;
                 }
             }

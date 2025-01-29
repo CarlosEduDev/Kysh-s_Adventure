@@ -61,7 +61,8 @@ public class Player extends Entity {
         exp = 0;
         nextLevelExp = 5;
         coin = 0;
-        currentweapon = new OBJ_Sword_Normal(gp);
+//        currentweapon = new OBJ_Sword_Normal(gp);
+        currentweapon = new OBJ_Axe(gp);
         currentShield = new OBJ_Shield_Wood(gp);
         attack = getAttack();
         defense = getDefense();
@@ -288,6 +289,9 @@ public class Player extends Entity {
             gp.iTile[i].playSE();
             gp.iTile[i].life--;
             gp.iTile[i].invincible = true;
+
+            // GERAR PARTICULAS
+            generateParticle(gp.iTile[i], gp.iTile[i]);
 
             if(gp.iTile[i].life == 0){
                 gp.iTile[i] = gp.iTile[i].getDestroyedForm();
