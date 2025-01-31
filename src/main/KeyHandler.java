@@ -140,7 +140,7 @@ public class KeyHandler implements KeyListener {
     }
 
     public void characterState(int code){
-        if(code == KeyEvent.VK_ESCAPE || code == KeyEvent.VK_C){
+        if(code == KeyEvent.VK_C){
             gp.gameState = gp.playState;
         }
         if(code == KeyEvent.VK_W){
@@ -187,14 +187,14 @@ public class KeyHandler implements KeyListener {
             case 3: maxCommandNum = 1; break;
         }
 
-        if(code == KeyEvent.VK_W){
+        if(code == KeyEvent.VK_W || code == KeyEvent.VK_UP){
             gp.ui.commandNum--;
             gp.playSoundEff(10);
             if(gp.ui.commandNum < 0){
                 gp.ui.commandNum = maxCommandNum;
             }
         }
-        if(code == KeyEvent.VK_S){
+        if(code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN){
             gp.ui.commandNum++;
             gp.playSoundEff(10);
             if(gp.ui.commandNum > maxCommandNum){
@@ -202,7 +202,7 @@ public class KeyHandler implements KeyListener {
             }
         }
 
-        if(code == KeyEvent.VK_A){
+        if(code == KeyEvent.VK_A || code == KeyEvent.VK_LEFT){
             if(gp.ui.subState == 0){
                 if(gp.ui.commandNum == 1 && gp.music.volumeScale > 0){
                     gp.music.volumeScale--;
@@ -216,7 +216,7 @@ public class KeyHandler implements KeyListener {
             }
         }
 
-        if(code == KeyEvent.VK_D){
+        if(code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT){
             if(gp.ui.subState == 0){
                 if(gp.ui.commandNum == 1 && gp.music.volumeScale < 5){
                     gp.music.volumeScale++;

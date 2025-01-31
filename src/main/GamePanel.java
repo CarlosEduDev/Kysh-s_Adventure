@@ -45,6 +45,8 @@ public class GamePanel extends JPanel implements Runnable{
     Thread gameThread;
     public CollitionChecker collitionCh = new CollitionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
+    Config config = new Config(this);
+
 
     // Entidade e Objetos
     public Player player = new Player(this, keyHandler);
@@ -86,7 +88,9 @@ public class GamePanel extends JPanel implements Runnable{
         tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
         g2 = (Graphics2D) tempScreen.getGraphics();
 
-//        setFullScreen();
+        if(isFullScreen == true){
+            setFullScreen();
+        }
     }
 
     public void startGameThread(){

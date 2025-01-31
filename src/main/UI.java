@@ -88,7 +88,7 @@ public class UI {
 
     }
 
-    public void drawOptionsScreen() {
+    private void drawOptionsScreen() {
         g2.setColor(Color.white);
         g2.setFont(g2.getFont().deriveFont(32F));
 
@@ -110,7 +110,7 @@ public class UI {
         gp.keyHandler.enterPressed = false;
     }
 
-    public void options_top(int frameX, int frameY){
+    private void options_top(int frameX, int frameY){
         int textX;
         int textY;
 
@@ -206,9 +206,11 @@ public class UI {
         volumeWidth = 24 * gp.soundEf.volumeScale;
         g2.fillRect(textX, textY, volumeWidth, 24); // 120/5 = 24
 
+        gp.config.saveConfig();
+
     }
 
-    public void options_fullScreenNotification(int frameX, int frameY){
+    private void options_fullScreenNotification(int frameX, int frameY){
         int textX = frameX + gp.tileSize;
         int textY = frameY + gp.tileSize*3;
 
@@ -230,7 +232,7 @@ public class UI {
         }
     }
 
-    public void options_control(int frameX, int frameY){
+    private void options_control(int frameX, int frameY){
         int textX, textY;
 
         g2.setFont(g2.getFont().deriveFont(25F));
@@ -275,10 +277,10 @@ public class UI {
     }
 
     private void options_EndGameConfirm(int frameX, int frameY) {
-        int textX = frameX + gp.tileSize;
+        int textX = frameX + gp.tileSize+35;
         int textY = frameY + gp.tileSize*3;
 
-        currentDialogue = "Sair do jogo e ir para\na tela inicial?";
+        currentDialogue = "Tem certeza?";
 
         for(String line: currentDialogue.split("\n")){
             g2.drawString(line, textX, textY);
@@ -293,9 +295,7 @@ public class UI {
         if(commandNum == 0){
             g2.drawString(">", textX-25,textY);
             if(gp.keyHandler.enterPressed == true){
-                subState = 0;
-                gp.gameState = gp.titleState;
-                gp.stopMusic();
+                System.exit(1);
             }
         }
 
