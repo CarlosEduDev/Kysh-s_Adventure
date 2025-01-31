@@ -2,13 +2,10 @@ package entity;
 
 import main.GamePanel;
 import main.KeyHandler;
-import main.UtilityTool;
 import object.*;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class Player extends Entity {
@@ -61,8 +58,8 @@ public class Player extends Entity {
         exp = 0;
         nextLevelExp = 5;
         coin = 0;
-//        currentweapon = new OBJ_Sword_Normal(gp);
-        currentweapon = new OBJ_Axe(gp);
+        currentweapon = new OBJ_Sword_Normal(gp);
+//        currentweapon = new OBJ_Axe(gp);
         currentShield = new OBJ_Shield_Wood(gp);
         attack = getAttack();
         defense = getDefense();
@@ -70,7 +67,20 @@ public class Player extends Entity {
 //        projectTile = new OBJ_Rock(gp);
     }
 
+    public void setDefaultConditions(){
+        worldX = gp.tileSize * 23;
+        worldY = gp.tileSize * 21;
+        direction = "down";
+    }
+
+    public void restoreLifeAndMana(){
+        life = maxLife;
+        mana = maxMana;
+        invincible = false;
+    }
+
     public void setItems(){
+        inventory.clear();
         inventory.add(currentweapon);
         inventory.add(currentShield);
         inventory.add(new OBJ_Key(gp));
@@ -233,6 +243,10 @@ public class Player extends Entity {
 
         if(mana > maxMana){
             mana = maxMana;
+        }
+        if(life <= 0){
+            gp.gameState = gp.gameOverState;
+            gp.playSoundEff(12);
         }
 
     }
