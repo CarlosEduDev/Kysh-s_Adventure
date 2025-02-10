@@ -155,7 +155,7 @@ public class Entity {
         if(invincible == true) {
             invincibleCounter++;
 
-            if (invincibleCounter > 60) {
+            if (invincibleCounter > 30) {
                 invincible = false;
                 invincibleCounter = 0;
             }

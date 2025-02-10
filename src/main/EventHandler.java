@@ -1,7 +1,5 @@
 package main;
 
-import java.awt.*;
-
 public class EventHandler {
     GamePanel gp;
     EventRect eventRect[][];
@@ -31,7 +29,6 @@ public class EventHandler {
                 row++;
             }
         }
-
     }
 
     public void checkEvent(){
@@ -44,8 +41,8 @@ public class EventHandler {
         }
 
         if(canTouchEvent){
-            if(hit(21, 21, "right") == true){damagePit(21, 21,gp.dialogueState);}
-            if(hit(23, 19, "any") == true){damagePit(27, 16,gp.dialogueState);}
+//            if(hit(21, 21, "right") == true){damagePit(21, 21,gp.dialogueState);}
+//            if(hit(23, 19, "any") == true){damagePit(27, 16,gp.dialogueState);}
             if(hit(23, 12, "up") == true){healingPool( 23, 12,gp.dialogueState);}
 
         }

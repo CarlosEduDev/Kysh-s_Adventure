@@ -14,7 +14,7 @@ import java.io.InputStreamReader;
 public class TileManager {
     GamePanel gp;
     public Tile[] tile;
-    public int[][] mapTilenum;
+    public int mapTilenum[][];
 
     public TileManager(GamePanel gp) {
         this.gp = gp;
@@ -24,7 +24,8 @@ public class TileManager {
         mapTilenum = new int[gp.maxWorldCol][gp.maxWorldRow];
 
         getTileImage();
-        loadMap("/res/maps/world01.txt");
+        loadMap("/res/maps/world02.txt");
+        loadMap("/maps/interior.txt"  );
     }
 
     // Carregar imagens dos tiles
@@ -74,7 +75,9 @@ public class TileManager {
         setup(39, "earth",false);
         setup(40, "wall",true);
         setup(41, "tree",true);
-        setup(42, "trunk",true);
+        setup(42, "hut",false);
+        setup(43, "floor01",false);
+        setup(44, "table01",true);
 
     }
 

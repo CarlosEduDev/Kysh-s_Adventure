@@ -64,7 +64,6 @@ public class Player extends Entity {
         attack = getAttack();
         defense = getDefense();
         projectTile = new OBJ_fireball(gp);
-//        projectTile = new OBJ_Rock(gp);
     }
 
     public void setDefaultConditions(){
@@ -220,7 +219,6 @@ public class Player extends Entity {
             gp.projectileList.add(projectTile);
 
             shotAvailableCounter = 0;
-
             gp.playSoundEff(11);
         }
 
@@ -246,7 +244,9 @@ public class Player extends Entity {
         }
         if(life <= 0){
             gp.gameState = gp.gameOverState;
-            gp.playSoundEff(12);
+            gp.ui.commandNum = -1;
+            gp.stopMusic();
+            gp.playSoundEff(13);
         }
 
     }

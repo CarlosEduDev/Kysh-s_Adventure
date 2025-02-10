@@ -38,8 +38,8 @@ public class Sound {
             fc = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
             checkVolume();
         }catch (Exception e){
+            e.printStackTrace();
     }
-
     }
     public void playSong(){
 

@@ -74,6 +74,7 @@ public class KeyHandler implements KeyListener {
             if(gp.ui.commandNum == 0){
                 gp.gameState = gp.playState;
                 gp.retry();
+                gp.playMusic(1);
             }
             else if(gp.ui.commandNum == 1){
                 gp.gameState = gp.titleState;
@@ -154,7 +155,7 @@ public class KeyHandler implements KeyListener {
             }
         }
         if (code == KeyEvent.VK_R){
-            gp.tileM.loadMap("/res/maps/world01.txt");
+            gp.tileM.loadMap("/res/maps/world02.txt");
             System.out.println("mudar mapa");
         }
     }
@@ -172,7 +173,7 @@ public class KeyHandler implements KeyListener {
     }
 
     public void characterState(int code){
-        if(code == KeyEvent.VK_C){
+        if(code == KeyEvent.VK_C || code == KeyEvent.VK_ESCAPE){
             gp.gameState = gp.playState;
         }
         if(code == KeyEvent.VK_W){

@@ -21,7 +21,7 @@ public class GreenSlime extends Entity {
         maxLife = 4;
         life = maxLife;
 
-        attack = 5;
+        attack = 3;
         defense = 0;
         exp = 2;
         projectTile = new OBJ_Rock(gp);
