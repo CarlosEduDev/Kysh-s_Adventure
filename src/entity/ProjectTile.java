@@ -24,7 +24,7 @@ public class ProjectTile extends Entity{
                 int monsterIndex = gp.collitionCh.checkEntity(this, gp.monster);
                 if(monsterIndex != 999){
                     gp.player.damageMonster(monsterIndex, attack);
-                    generateParticle(user.projectTile, gp.monster[monsterIndex]);
+                    generateParticle(user.projectTile, gp.monster[gp.currentMap][monsterIndex]);
                     alive = false;
                 }
             }

@@ -14,18 +14,18 @@ import java.io.InputStreamReader;
 public class TileManager {
     GamePanel gp;
     public Tile[] tile;
-    public int mapTilenum[][];
+    public int mapTilenum[][][];
 
     public TileManager(GamePanel gp) {
         this.gp = gp;
         tile = new Tile[50];
 
         // Inicializando o mapa com base nas dimensões do mundo
-        mapTilenum = new int[gp.maxWorldCol][gp.maxWorldRow];
+        mapTilenum = new int[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow];
 
         getTileImage();
-        loadMap("/res/maps/world02.txt");
-        loadMap("/maps/interior.txt"  );
+        loadMap("/res/maps/world02.txt", 0);
+        loadMap("/res/maps/interior.txt", 1);
     }
 
     // Carregar imagens dos tiles
@@ -96,7 +96,7 @@ public class TileManager {
     }
 
     // Carregar o mapa a partir de um arquivo de texto
-    public void loadMap(String filePath) {
+    public void loadMap(String filePath, int map) {
         try {
             InputStream is = getClass().getResourceAsStream(filePath);
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
@@ -110,7 +110,7 @@ public class TileManager {
                 while (worldCol < gp.maxWorldCol) {
                     String[] numbers = line.split(" ");
                     int num = Integer.parseInt(numbers[worldCol]);
-                    mapTilenum[worldCol][worldRow] = num;
+                    mapTilenum[map][worldCol][worldRow] = num;
                     worldCol++;
                 }
 
@@ -134,7 +134,7 @@ public class TileManager {
         int worldRow = 0;
 
         while (worldCol < gp.maxWorldCol && worldRow < gp.maxWorldRow) {
-            int tileNum = mapTilenum[worldCol][worldRow];
+            int tileNum = mapTilenum[gp.currentMap][worldCol][worldRow];
 
             int worldX = worldCol * gp.tileSize;
             int worldY = worldRow * gp.tileSize;

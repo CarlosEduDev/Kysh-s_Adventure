@@ -7,6 +7,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Entity {
     GamePanel gp;
@@ -31,6 +32,8 @@ public class Entity {
     public Entity currentShield;
 
     // ATRIBUTO DE ITENS
+    public ArrayList<Entity> inventory = new ArrayList<>();
+    public final int maxInventorySize = 20;
     public int attackValue;
     public int defenseValue;
     public String descripton = "";
@@ -111,11 +114,11 @@ public class Entity {
     public void checkDrop(){}
 
     public void dropItem(Entity droppedItem){
-        for(int i = 0; i < gp.obj.length; i++){
-            if(gp.obj[i] == null){
-                gp.obj[i] = droppedItem;
-                gp.obj[i].worldX = worldX;
-                gp.obj[i].worldY = worldY;
+        for(int i = 0; i < gp.obj[1].length; i++){
+            if(gp.obj[gp.currentMap][i] == null){
+                gp.obj[gp.currentMap][i] = droppedItem;
+                gp.obj[gp.currentMap][i].worldX = worldX;
+                gp.obj[gp.currentMap][i].worldY = worldY;
                 break;
             }
         }
@@ -146,7 +149,7 @@ public class Entity {
         }
 
         spriteCounter++;
-        if(spriteCounter > 12){
+        if(spriteCounter > 24){
             if(spriteNum == 1){spriteNum = 2;}
             else if (spriteNum == 2) {spriteNum = 1;}
             spriteCounter = 0;

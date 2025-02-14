@@ -28,7 +28,9 @@ public class UI {
     public int slotCol = 0;
     public int slotRow = 0;
     int subState = 0;
+    int counter = 0;
 
+    public Entity npc;
 
     public UI(GamePanel gp){
         this.gp = gp;
@@ -91,6 +93,112 @@ public class UI {
             drawGameOverScreen();
         }
 
+        // TRANSITION STATE
+        if(gp.gameState == gp.transitionState){
+            drawTransition();
+        }
+
+        // TRADE STATE
+        if(gp.gameState == gp.tradeState){
+            drawTradeScreen();
+        }
+
+    }
+
+    private void drawTradeScreen() {
+
+        switch (subState){
+            case 0: trade_select(); break;
+            case 1: trade_buy(); break;
+            case 2: trade_sell(); break;
+        }
+
+        gp.keyHandler.enterPressed = false;
+    }
+
+    public void trade_select(){
+        drawDialogueScreen();
+
+        // desenhar janela
+        int x = gp.tileSize * 15;
+        int y = gp.tileSize * 4;
+        int width = gp.tileSize * 4;
+        int height = (int)(gp.tileSize * 3.5);
+
+        drawWindow(x,y,width, height);
+
+        // TEXTO
+        x += (gp.tileSize);
+        y += gp.tileSize;
+
+        g2.drawString("Comprar", x,y);
+        if(commandNum == 0){
+            g2.drawString(">", x-24,y);
+        }
+        y+= gp.tileSize;
+
+        g2.drawString("Vender", x,y);
+        if(commandNum == 1){
+            g2.drawString(">", x-24,y);
+        }
+        y+= gp.tileSize;
+
+        g2.drawString("Sair", x,y);
+        if(commandNum == 2){
+            g2.drawString(">", x-24,y);
+        }
+
+    }
+    public void trade_buy(){}
+    public void trade_sell(){}
+    public void trade_getItemIndexOnSlot(){}
+
+    private void drawTransition() {
+        counter++;
+
+        g2.setColor(new Color(0,0,0,counter*5));
+        g2.fillRect(0,0,gp.screenWidth, gp.screenHeight);
+
+        if(counter == 50){
+            counter = 0;
+            gp.gameState = gp.playState;
+            gp.currentMap = gp.eHandler.tempMap;
+            gp.player.worldX = gp.tileSize * gp.eHandler.tempCol;
+            gp.player.worldY = gp.tileSize * gp.eHandler.tempRow;
+            gp.eHandler.previousEventX = gp.player.worldX;
+            gp.eHandler.previousEventY = gp.player.worldY;
+        }
+
+    }
+
+    public void drawTutorialScreen(int frameX, int frameY){
+        int textX, textY;
+
+        g2.setFont(g2.getFont().deriveFont(25F));
+
+        // TITULO
+        String text = "Tutorial";
+        textX = getXforCenteredText(text);
+        textY = frameY + gp.tileSize;
+        g2.drawString(text, textX, textY);
+
+        textX = frameX + gp.tileSize;
+        textY += gp.tileSize;
+        g2.drawString("Mover", textX, textY); textY += gp.tileSize;
+        g2.drawString("Confirmar/Atacar", textX, textY); textY += gp.tileSize;
+        g2.drawString("Atirar/lançar", textX, textY); textY += gp.tileSize;
+        g2.drawString("Pausar", textX, textY); textY += gp.tileSize;
+        g2.drawString("Inventário/INFO", textX, textY); textY += gp.tileSize;
+        g2.drawString("Opções", textX, textY); textY += gp.tileSize;
+
+        textX = frameX + gp.tileSize*6;
+        textY = frameY + gp.tileSize*2;
+        g2.drawString("WASD", textX, textY); textY += gp.tileSize;
+        g2.drawString("ENTER", textX-5, textY); textY += gp.tileSize;
+        g2.drawString("F", textX, textY); textY += gp.tileSize;
+        g2.drawString("p", textX, textY); textY += gp.tileSize;
+        g2.drawString("C", textX, textY); textY += gp.tileSize;
+        g2.drawString("ESC", textX, textY); textY += gp.tileSize;
     }
 
     private void drawGameOverScreen() {
@@ -714,8 +822,8 @@ public class UI {
 
     public void drawDialogueScreen(){
         // WINDOW
-        int x = gp.tileSize*2, y = gp.tileSize/2;
-        int width = gp.screenWidth - (gp.tileSize*4), height = gp.tileSize*4;
+        int x = gp.tileSize*3, y = gp.tileSize/2;
+        int width = gp.screenWidth - (gp.tileSize*6), height = gp.tileSize*4;
         drawWindow(x, y, width, height);
 
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 25));

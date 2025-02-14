@@ -53,6 +53,34 @@ public class KeyHandler implements KeyListener {
         else if(gp.gameState == gp.gameOverState){
             gameOverState(code);
         }
+
+        // TRADE STATE
+        else if(gp.gameState == gp.tradeState){
+            tradeState(code);
+        }
+    }
+
+    private void tradeState(int code) {
+        if(code == KeyEvent.VK_ENTER){
+            enterPressed = true;
+        }
+
+        if(gp.ui.subState == 0){
+            if(code == KeyEvent.VK_W || code == KeyEvent.VK_UP){
+                gp.ui.commandNum--;
+                if(gp.ui.commandNum < 0){
+                    gp.ui.commandNum = 2;
+                }
+                gp.playSoundEff(10);
+            }
+            if(code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN){
+                gp.ui.commandNum++;
+                if(gp.ui.commandNum > 2){
+                    gp.ui.commandNum = 0;
+                }
+                gp.playSoundEff(10);
+            }
+        }
     }
 
     private void gameOverState(int code) {
@@ -132,7 +160,7 @@ public class KeyHandler implements KeyListener {
             gp.gameState = gp.pauseState;
             gp.stopMusic();
         }
-        if (code == KeyEvent.VK_C) {
+        if (code == KeyEvent.VK_I) {
             gp.gameState = gp.characterState;
         }
         if (code == KeyEvent.VK_ENTER) {
@@ -155,7 +183,10 @@ public class KeyHandler implements KeyListener {
             }
         }
         if (code == KeyEvent.VK_R){
-            gp.tileM.loadMap("/res/maps/world02.txt");
+            switch (gp.currentMap){
+                case 0: gp.tileM.loadMap("/res/maps/world02.txt", 0); break;
+                case 1: gp.tileM.loadMap("/res/maps/interior.txt",1); break;
+            }
             System.out.println("mudar mapa");
         }
     }
@@ -173,7 +204,7 @@ public class KeyHandler implements KeyListener {
     }
 
     public void characterState(int code){
-        if(code == KeyEvent.VK_C || code == KeyEvent.VK_ESCAPE){
+        if(code == KeyEvent.VK_I || code == KeyEvent.VK_ESCAPE){
             gp.gameState = gp.playState;
         }
         if(code == KeyEvent.VK_W){
@@ -264,6 +295,7 @@ public class KeyHandler implements KeyListener {
         }
 
     }
+
     @Override
     public void keyReleased(KeyEvent e) {
         int code = e.getKeyCode();
