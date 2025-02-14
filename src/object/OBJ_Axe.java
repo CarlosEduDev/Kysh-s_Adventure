@@ -14,5 +14,6 @@ public class OBJ_Axe extends Entity {
         descripton = "[ " + name + " ]\nServe para cortar árvores\nAtaque: " + attackValue;
         attackArea.width = 30;
         attackArea.height = 30;
+        price = 75;
     }
 }

@@ -38,6 +38,7 @@ public class Entity {
     public int defenseValue;
     public String descripton = "";
     public int value;
+    public int price;
 
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48); // o Rectangle cria um retângulo invisivel/abstrato
 

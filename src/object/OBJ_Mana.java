@@ -15,6 +15,7 @@ public class OBJ_Mana extends Entity {
         name = "Mana";
         image = setup("/res/objects/manacrystal_full", gp.tileSize, gp.tileSize);
         image2 = setup("/res/objects/manacrystal_blank", gp.tileSize, gp.tileSize);
+
     }
 
     public void use(Entity entity){

@@ -14,5 +14,6 @@ public class OBJ_Blue_Shield extends Entity {
         descripton = "[ " + name + " ]\nUm escudo cintilante\nDefesa: " + defenseValue;
         attackArea.width = 30;
         attackArea.height = 30;
+        price = 83;
     }
 }
