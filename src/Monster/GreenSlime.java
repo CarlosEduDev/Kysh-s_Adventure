@@ -21,10 +21,10 @@ public class GreenSlime extends Entity {
         maxLife = 4;
         life = maxLife;
 
-        attack = 3;
+        attack = 2;
         defense = 0;
         exp = 2;
-        projectTile = new OBJ_Rock(gp);
+//        projectTile = new OBJ_Rock(gp);
 
         solidArea.x = 3;
         solidArea.y = 18;
@@ -72,12 +72,12 @@ public class GreenSlime extends Entity {
         }
 
         int i = new Random().nextInt(100)+1;
-        if(i > 99 && projectTile.alive == false && shotAvailableCounter == 30){
-            projectTile.set(worldX, worldY, direction, true, this);
-
-            gp.projectileList.add(projectTile);
-            shotAvailableCounter = 0;
-        }
+//        if(i > 99 && projectTile.alive == false && shotAvailableCounter == 30){
+//            projectTile.set(worldX, worldY, direction, true, this);
+//
+//            gp.projectileList.add(projectTile);
+//            shotAvailableCounter = 0;
+//        }
     }
 
     public void damageReaction(){

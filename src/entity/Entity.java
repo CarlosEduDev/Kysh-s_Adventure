@@ -20,6 +20,7 @@ public class Entity {
     public int spriteCounter = 0;
     public int spriteNum = 1;
 
+    // ATRIBUTO DE ENTIDADE
     public int level;
     public int strenght;
     public int dexterity;
@@ -64,7 +65,7 @@ public class Entity {
     public int useCost;
 
     public int invincibleCounter = 0;
-    String dialogues[] = new String[20];
+    public String dialogues[] = new String[20];
     int dialogueIndex = 0;
 
     public BufferedImage image, image2, image3;
@@ -247,7 +248,7 @@ public class Entity {
 
     public void damagePlayer(int attack){
         if(gp.player.invincible == false){
-            // vai dar dano
+            // vai dar dano no player
             gp.playSoundEff(7);
             int damage = attack - gp.player.defense;
             if(damage < 0){

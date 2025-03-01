@@ -27,12 +27,18 @@ public class NPC_OldMan extends Entity{
         right2 = setup("/res/npc/oldman_right_2", gp.tileSize, gp.tileSize);
     }
 
-    public void setDialogue(){
-        dialogues[0] = "Boas vindas ao Reino de Varrock, viajante!";
-        dialogues[1] = "Suponho que esteja aqui pelo tesouro sagrado.";
-        dialogues[2] = "Quase me esqueci de me apresentar! Meu nome \né Dan, o guardião mago desse reino, prazer!";
-        dialogues[3] = "Infelizmente estou velho demais para me \naventurar em busca do tesouro sagrado, logo\nirei me aposentar haha!";
-        dialogues[4] = "Boa viagem, jovem paladino!";
+    public String setDialogue(){
+        int i = 0;
+        dialogues[i] = "Boas vindas ao Reino de Varrock, viajante!";
+        i++;
+        dialogues[i] = "Suponho que esteja aqui pelo tesouro sagrado.";
+        i++;
+        dialogues[i] = "Quase me esqueci de me apresentar! Meu nome \né Dan, o guardião mago desse reino, prazer!";
+        i++;
+        dialogues[i] = "Seja bem-vindo e boa viagem";
+        i++;
+
+        return dialogues[i];
     }
     public void setAction(){
 

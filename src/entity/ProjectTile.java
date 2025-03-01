@@ -26,6 +26,11 @@ public class ProjectTile extends Entity{
                     gp.player.damageMonster(monsterIndex, attack);
                     generateParticle(user.projectTile, gp.monster[gp.currentMap][monsterIndex]);
                     alive = false;
+
+                    if(gp.monster[gp.currentMap][monsterIndex].life == 0){
+                        gp.particleList.clear();
+                        System.out.println("Limpeza de memória project");
+                    }
                 }
             }
             if(user != gp.player){

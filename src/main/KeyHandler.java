@@ -2,6 +2,7 @@ package main;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.security.Key;
 
 public class KeyHandler implements KeyListener {
 
@@ -59,7 +60,6 @@ public class KeyHandler implements KeyListener {
             tradeState(code);
         }
     }
-
     private void tradeState(int code) {
         if(code == KeyEvent.VK_ENTER){
             enterPressed = true;
@@ -201,7 +201,6 @@ public class KeyHandler implements KeyListener {
                 case 0: gp.tileM.loadMap("/res/maps/world02.txt", 0); break;
                 case 1: gp.tileM.loadMap("/res/maps/interior.txt",1); break;
             }
-            System.out.println("mudar mapa");
         }
     }
 

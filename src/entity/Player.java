@@ -13,6 +13,7 @@ public class Player extends Entity {
     public final int screenX;
     public final int screenY;
     int standCounter = 0;
+    int hasKey = 0;
     public boolean attackCanceled = false;
     public Player(GamePanel gp, KeyHandler keyH) {
         super(gp);
@@ -37,12 +38,14 @@ public class Player extends Entity {
         setItems();
     }
 
+    // TODO alterar a animação de bater com a espada e mais
+
     // Definir valores padrões
     public void setDefaultValues() {
-        worldX = gp.tileSize * 10;
-        worldY = gp.tileSize * 40;
-//        worldX = gp.tileSize * 12;
-//        worldY = gp.tileSize * 13;
+//        worldX = gp.tileSize * 10;
+//        worldY = gp.tileSize * 40;
+        worldX = gp.tileSize * 20;
+        worldY = gp.tileSize * 21;
         speed = 4;
         direction = "down";
 
@@ -53,12 +56,13 @@ public class Player extends Entity {
         mana = maxMana;
         ammo = 10;
         level = 1;
+        name = "Lyriel";
         strenght = 1;
         dexterity = 1;
         exp = 0;
         nextLevelExp = 5;
         coin = 1300;
-//        currentweapon = new OBJ_Sword_Normal(gp);
+//        currentweapon = new OBJ_Sword_Wood(gp);
         currentweapon = new OBJ_Axe(gp);
         currentShield = new OBJ_Shield_Wood(gp);
         attack = getAttack();
@@ -82,7 +86,6 @@ public class Player extends Entity {
         inventory.clear();
         inventory.add(currentweapon);
         inventory.add(currentShield);
-        inventory.add(new OBJ_Key(gp));
     }
 
     private int getAttack() {
@@ -118,7 +121,6 @@ public class Player extends Entity {
             attackLeft2 = setup("/res/player/boy_attack_left_2", gp.tileSize*2, gp.tileSize);
             attackRight1 = setup("/res/player/boy_attack_right_1", gp.tileSize*2, gp.tileSize);
             attackRight2 = setup("/res/player/boy_attack_right_2", gp.tileSize*2, gp.tileSize);
-
         }
 
         if(currentweapon.type == type_axe){
@@ -130,7 +132,6 @@ public class Player extends Entity {
             attackLeft2 = setup("/res/player/boy_axe_left_2", gp.tileSize*2, gp.tileSize);
             attackRight1 = setup("/res/player/boy_axe_right_1", gp.tileSize*2, gp.tileSize);
             attackRight2 = setup("/res/player/boy_axe_right_2", gp.tileSize*2, gp.tileSize);
-
         }
     }
 
@@ -292,7 +293,6 @@ public class Player extends Entity {
             solidArea.width = solidAreaWidth;
             solidArea.height = solidAreaHeight;
 
-
         }
         if(spriteCounter > 25){
             spriteNum = 1;
@@ -313,6 +313,9 @@ public class Player extends Entity {
 
             if(gp.iTile[gp.currentMap][i].life == 0){
                 gp.iTile[gp.currentMap][i] = gp.iTile[gp.currentMap][i].getDestroyedForm();
+
+                gp.particleList.clear();
+                System.out.println("Limpeza na memória arvore");
             }
         }
     }
@@ -361,6 +364,15 @@ public class Player extends Entity {
 
     public void pickUpObject(int i){ // pegar um objeto
         if(i != 999){
+
+            switch (gp.obj[gp.currentMap][i].name){
+                case "Key": hasKey++;break;
+                case "Door":
+                    if(hasKey > 0){
+                        gp.obj[gp.currentMap][i] = null;
+                    }
+                    break;
+            }
             // pegar apenas itens
             if(gp.obj[gp.currentMap][i].type == type_pickUpOnly){
                 gp.obj[gp.currentMap][i].use(this);

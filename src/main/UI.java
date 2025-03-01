@@ -1,13 +1,18 @@
 package main;
 
 import entity.Entity;
+import entity.NPC_OldMan;
 import object.OBJ_Coin_Bronze;
 import object.OBJ_Heart;
 import object.OBJ_Mana;
 
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class UI {
     GamePanel gp;
@@ -34,6 +39,8 @@ public class UI {
     int counter = 0;
 
     public Entity npc;
+
+    // TODO - criar inventário visível(igual minecraft) #feito
 
     public UI(GamePanel gp){
         this.gp = gp;
@@ -68,6 +75,7 @@ public class UI {
         // PLAY STATE
         if(gp.gameState == gp.playState){
             drawPlayerLife();
+            drawMiniInventory(gp.player);
             drawMessage();
             drawExpMessage();
             }
@@ -108,7 +116,6 @@ public class UI {
         if(gp.gameState == gp.tradeState){
             drawTradeScreen();
         }
-
     }
 
     private void drawTradeScreen() {
@@ -592,6 +599,46 @@ public class UI {
         }
     }
 
+    private void drawMiniInventory(Entity entity) {
+        int frameX = 0;
+        int frameY = 0;
+        int frameWidth = 0;
+        int frameHeight = 0;
+
+        if (entity == gp.player) {
+            frameX = gp.tileSize * 7;
+            frameY = gp.tileSize * 10;
+            frameWidth = gp.tileSize * 6;
+            frameHeight = gp.tileSize * 2;
+        }
+
+        drawWindow(frameX, frameY, frameWidth, frameHeight);
+
+        // DESENHAR O SLOT
+        final int slotXstart = frameX + 20;
+        final int slotYstart = frameY + 20;
+        int slotX = slotXstart;
+        int slotY = slotYstart;
+        int slotSize = gp.tileSize + 3;
+
+        // CONFIGURAÇÕES DO INVENTÁRIO REDUZIDO
+        int maxItemsPerRow = 5; // Número máximo de itens exibidos por vez
+        int slotIndex = 0;
+
+        // DESENHAR ITENS (apenas os itens visíveis)
+        for (int i = slotIndex; i < slotIndex + maxItemsPerRow && i < entity.inventory.size(); i++) {
+            if (entity.inventory.get(i) == entity.currentweapon || entity.inventory.get(i) == entity.currentShield) {
+                g2.setColor(new Color(240, 190, 90));
+                g2.fillRoundRect(slotX, slotY, gp.tileSize, gp.tileSize, 10, 10);
+            }
+
+            g2.drawImage(entity.inventory.get(i).down1, slotX, slotY, null);
+            slotX += slotSize;
+        }
+
+        // BOTÕES DE NAVEGAÇÃO, TALVEZ? 1 | 2 | 3 | 4 | 5 |
+    }
+
     private void drawInventory(Entity entity, boolean cursor) {
         int frameX = 0;
         int frameY = 0;
@@ -609,7 +656,8 @@ public class UI {
 
             slotCol = playerSlotCol;
             slotRow = playerSlotRow;
-        }else{
+        }
+        else{
             frameX = gp.tileSize*2;
             frameY = gp.tileSize;
             frameWidth = gp.tileSize*6;
