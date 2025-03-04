@@ -2,19 +2,28 @@ package entity;
 
 import main.GamePanel;
 
+import java.awt.*;
 import java.util.Random;
 
 public class NPC_OldMan extends Entity{
 
+
     public NPC_OldMan(GamePanel gp) {
         super(gp);
+
+        solidArea = new Rectangle();
+        solidArea.x = 8;
+        solidArea.y = 16;
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
+        solidArea.width = 30;
+        solidArea.height = 28;
 
         direction = "down";
         speed = 1;
 
         getImage();
         setDialogue();
-//        speak();
     }
     public void getImage() {
         up1 = setup("/res/npc/oldman_up_1", gp.tileSize, gp.tileSize);
@@ -27,7 +36,7 @@ public class NPC_OldMan extends Entity{
         right2 = setup("/res/npc/oldman_right_2", gp.tileSize, gp.tileSize);
     }
 
-    public String setDialogue(){
+    public void setDialogue(){
         int i = 0;
         dialogues[i] = "Boas vindas ao Reino de Varrock, viajante!";
         i++;
@@ -38,39 +47,45 @@ public class NPC_OldMan extends Entity{
         dialogues[i] = "Seja bem-vindo e boa viagem";
         i++;
 
-        return dialogues[i];
     }
     public void setAction(){
 
-        actionLockCounter++;
+        if(onPath){
+//            int goalCol = 40;
+//            int goalRow = 9;
 
-        if(actionLockCounter == 120){
+            int goalCol = (gp.player.worldX + gp.player.solidArea.x)/gp.tileSize;
+            int goalRow = (gp.player.worldY + gp.player.solidArea.y)/gp.tileSize;
 
-            Random random = new Random();
-            int i = random.nextInt(100)+1; // escolhe de 1 a 100;
+            searchPath(goalCol, goalRow);
+        }else{
+            actionLockCounter++;
 
-            if(i <= 25){
-                direction = "up";
+            if(actionLockCounter == 120){
+
+                Random random = new Random();
+                int i = random.nextInt(100)+1; // escolhe de 1 a 100;
+
+                if(i <= 25){
+                    direction = "up";
+                }
+                if(i > 25 && i <= 50){
+                    direction = "down";
+                }
+                if(i > 50 && i <= 75){
+                    direction = "left";
+                }
+                if(i > 75 && i <= 100){
+                    direction = "right";
+                }
+                actionLockCounter = 0;
             }
-            if(i > 25 && i <= 50){
-                direction = "down";
-            }
-            if(i > 50 && i <= 75){
-                direction = "left";
-            }
-            if(i > 75 && i <= 100){
-                direction = "right";
-            }
-            actionLockCounter = 0;
         }
     }
 
+
     public void speak(){
         super.speak();
+        onPath = true;
     }
 }
-/*
-dialogues[4] = "Você parece que veio de muito longe, cavalheiro!";
-        dialogues[5] = "Se você encontrar o tesouro sagrado, irá realizar todas as suas ambições, mas tenha cuidado...";
-        dialogues[6] = "Muitos guerreiros como você morreram tentando por as mãos no tesouro sagrado, mostre que você é diferente deles!";
-* */

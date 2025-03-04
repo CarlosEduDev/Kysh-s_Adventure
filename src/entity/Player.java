@@ -6,7 +6,6 @@ import object.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 public class Player extends Entity {
     KeyHandler keyH;
@@ -149,7 +148,7 @@ public class Player extends Entity {
             else if (keyH.rightPressed) {direction = "right";}
 
             //checa a colisão dos tile
-            collitionOn = false;
+            collisionOn = false;
             gp.collitionCh.checkTile(this);
 
             // checar a colisão dos objetos
@@ -175,7 +174,7 @@ public class Player extends Entity {
             gp.eHandler.checkEvent();
 
             // se a colisão for false, o jogador pode andar
-            if(collitionOn == false && keyH.enterPressed == false){
+            if(collisionOn == false && keyH.enterPressed == false){
                 switch(direction){
                     case "up": worldY -= speed;break;
                     case "down": worldY += speed;break;
@@ -364,15 +363,6 @@ public class Player extends Entity {
 
     public void pickUpObject(int i){ // pegar um objeto
         if(i != 999){
-
-            switch (gp.obj[gp.currentMap][i].name){
-                case "Key": hasKey++;break;
-                case "Door":
-                    if(hasKey > 0){
-                        gp.obj[gp.currentMap][i] = null;
-                    }
-                    break;
-            }
             // pegar apenas itens
             if(gp.obj[gp.currentMap][i].type == type_pickUpOnly){
                 gp.obj[gp.currentMap][i].use(this);

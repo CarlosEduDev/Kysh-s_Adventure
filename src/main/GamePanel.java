@@ -1,5 +1,6 @@
 package main;
 
+import ai.PathFinder;
 import entity.Entity;
 import entity.Player;
 import tile.TileManager;
@@ -39,7 +40,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     // Sistema
     public UI ui = new UI(this);
-    TileManager tileM = new TileManager(this);
+    public TileManager tileM = new TileManager(this);
     public KeyHandler keyHandler = new KeyHandler(this);
     Sound music = new Sound();
     Sound soundEf = new Sound();
@@ -48,11 +49,13 @@ public class GamePanel extends JPanel implements Runnable{
     public CollitionChecker collitionCh = new CollitionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
     Config config = new Config(this);
+    public PathFinder pFinder = new PathFinder(this);
 
 
     // Entidade e Objetos
     public Player player = new Player(this, keyHandler);
     public Entity obj[][] = new Entity[maxMap][20];
+//    public Entity obj2[][] = new Entity[maxMap][30]; OJB_DOOR, OBJ_MESA
     public Entity npc[][] = new Entity[maxMap][10];
     public Entity monster[][] = new Entity[maxMap][20];
     public Entity plate[][] = new Entity[maxMap][5];

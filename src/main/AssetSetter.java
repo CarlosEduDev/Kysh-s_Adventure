@@ -16,14 +16,7 @@ public class AssetSetter {
 
     public void setObject(){
         int i = 0, mapNum = 0;
-        gp.obj[mapNum][i] = new OBJ_Door(gp);
-        gp.obj[mapNum][i].worldX = gp.tileSize*12;
-        gp.obj[mapNum][i].worldY = gp.tileSize*12;
-        i++;
-        gp.obj[mapNum][i] = new OBJ_Chest(gp);
-        gp.obj[mapNum][i].worldX = gp.tileSize*11;
-        gp.obj[mapNum][i].worldY = gp.tileSize*8;
-        i++;
+
         gp.obj[mapNum][i] = new OBJ_Key(gp);
         gp.obj[mapNum][i].worldX = gp.tileSize*26;
         gp.obj[mapNum][i].worldY = gp.tileSize*21;
@@ -57,12 +50,12 @@ public class AssetSetter {
     public void setInteractiveTile(){
         int i = 0, mapNum = 0;
 
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 14, 26);
-        i++;
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 14, 27);
-        i++;
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 14, 28);
-        i++;
+//        gp.iTile[mapNum][i] = new IT_DryTree(gp, 14, 26);
+//        i++;
+//        gp.iTile[mapNum][i] = new IT_DryTree(gp, 14, 27);
+//        i++;
+//        gp.iTile[mapNum][i] = new IT_DryTree(gp, 14, 28);
+//        i++;
 
         gp.iTile[mapNum][i] = new IT_DryTree(gp, 27, 12);
         i++;
