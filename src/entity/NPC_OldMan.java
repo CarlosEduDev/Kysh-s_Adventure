@@ -51,13 +51,16 @@ public class NPC_OldMan extends Entity{
     public void setAction(){
 
         if(onPath){
-//            int goalCol = 40;
-//            int goalRow = 9;
-
-            int goalCol = (gp.player.worldX + gp.player.solidArea.x)/gp.tileSize;
-            int goalRow = (gp.player.worldY + gp.player.solidArea.y)/gp.tileSize;
+            int goalCol = 12;
+            int goalRow = 9;
 
             searchPath(goalCol, goalRow);
+
+            int nextCol = gp.pFinder.pathList.get(0).col;
+            int nextRow = gp.pFinder.pathList.get(0).row;
+            if(nextCol == goalCol && nextRow == goalRow){
+                onPath = false;
+            }
         }else{
             actionLockCounter++;
 
