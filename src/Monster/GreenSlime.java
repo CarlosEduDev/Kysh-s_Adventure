@@ -17,9 +17,11 @@ public class GreenSlime extends Entity {
 
         type = type_monster;
         name = "Slime verde";
-        speed = 1;
+        defaultSpeed = 1;
+        speed = defaultSpeed;
         maxLife = 4;
         life = maxLife;
+        projectTile = new OBJ_Rock(gp);
 
         attack = 2;
         defense = 0;
@@ -33,6 +35,7 @@ public class GreenSlime extends Entity {
 
         getImage();
     }
+
 
     public void getImage(){
         up1 = setup("/res/monster/greenslime_down_1", gp.tileSize, gp.tileSize);
@@ -65,9 +68,24 @@ public class GreenSlime extends Entity {
         if(onPath){
             int goalCol = (gp.player.worldX + gp.player.solidArea.x)/gp.tileSize;
             int goalRow = (gp.player.worldY + gp.player.solidArea.y)/gp.tileSize;
+//            speed = 2;
 
             searchPath(goalCol, goalRow);
-            speed = 2;
+
+            int i = new Random().nextInt(200)+1;
+            if(i > 197 && !projectTile.alive && shotAvailableCounter == 30){
+                projectTile.set(worldX, worldY, direction, true, this);
+
+                for(int ii = 0; ii < gp.projectile[1].length; ii++){
+                    if(gp.projectile[gp.currentMap][ii] == null){
+                        gp.projectile[gp.currentMap][ii] = projectTile;
+                        break;
+                    }
+                }
+
+                shotAvailableCounter = 0;
+            }
+
         }
         else{
             actionLockCounter++;

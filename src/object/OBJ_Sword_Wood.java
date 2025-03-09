@@ -15,5 +15,6 @@ public class OBJ_Sword_Wood extends Entity {
         attackArea.height = 36;
         descripton = "[ " + name + " ]\nUma espada velha.\nAtaque: " + attackValue;
         price = 3;
+        knockBackPower = 4;
     }
 }

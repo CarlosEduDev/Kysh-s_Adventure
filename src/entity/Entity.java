@@ -16,6 +16,7 @@ public class Entity {
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
     public BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2;
     public String direction = "down";
+    public boolean knockBack = false;
 
     public int spriteCounter = 0;
     public int spriteNum = 1;
@@ -23,6 +24,7 @@ public class Entity {
     // ATRIBUTO DE ENTIDADE - player e npc
     public int level;
     public int strenght;
+    public int ammo;
     public int dexterity;
     public int attack;
     public int defense;
@@ -31,6 +33,7 @@ public class Entity {
     public int coin;
     public Entity currentweapon;
     public Entity currentShield;
+    public int defaultSpeed;
 
     // ATRIBUTO DE ITENS
     public ArrayList<Entity> inventory = new ArrayList<>();
@@ -40,6 +43,7 @@ public class Entity {
     public String descripton = "";
     public int value;
     public int price;
+    public int knockBackPower = 0;
 
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48); // o Rectangle cria um retângulo invisivel/abstrato
 
@@ -55,7 +59,8 @@ public class Entity {
 
     public boolean onPath = false;
 
-    public int ammo;
+    // Counter
+    int knockBackCounter = 0;
     int dyingCounter = 0;
     int hpBarCounter = 0;
 
@@ -143,15 +148,40 @@ public class Entity {
     }
 
     public void update(){
-        setAction();
-        checkCollision();
 
-        if(!collisionOn){
-            switch(direction){
-                case "up": worldY -= speed;break;
-                case "down": worldY += speed;break;
-                case "left": worldX -= speed;break;
-                case "right": worldX += speed;break;
+        if(knockBack){
+            checkCollision();
+
+            if(collisionOn){
+                knockBackCounter = 0;
+                knockBack = false;
+                speed = defaultSpeed;
+            }
+            else if(collisionOn == false){
+                switch (gp.player.direction){
+                    case "up": worldY -= speed;break;
+                    case "down": worldY += speed;break;
+                    case "left": worldX -= speed;break;
+                    case "right": worldX += speed;break;
+                }
+            }
+            knockBackCounter++;
+            if(knockBackCounter == 5){
+                knockBackCounter = 0;
+                knockBack = false;
+                speed = defaultSpeed;
+            }
+        }else{
+            setAction();
+            checkCollision();
+
+            if(!collisionOn){
+                switch(direction){
+                    case "up": worldY -= speed;break;
+                    case "down": worldY += speed;break;
+                    case "left": worldX -= speed;break;
+                    case "right": worldX += speed;break;
+                }
             }
         }
 

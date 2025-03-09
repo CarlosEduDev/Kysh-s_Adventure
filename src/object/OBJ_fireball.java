@@ -15,6 +15,7 @@ public class OBJ_fireball extends ProjectTile {
 
         name = "Bola de fogo";
         speed = 7;
+        knockBackPower = 0;
         maxLife = 80;
         life = maxLife;
         attack = 2;
